@@ -1,5 +1,6 @@
 ---
 title: "modeling_with_4CE_severity_codes"
+author: Hossein Estiri
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{modeling_with_4CE_severity_codes}
