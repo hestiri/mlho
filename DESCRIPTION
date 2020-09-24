@@ -16,3 +16,5 @@ Suggests:
     knitr,
     rmarkdown
 Imports: dplyr, tidytext, ggplot2, reshape2, plyr, stringr, DT, data.table, devtools, mboost, caret, pROC, PRROC
+URL: https://github.com/hestiri/mlho
+BugReports: https://github.com/hestiri/mlho/issues
