@@ -2,10 +2,16 @@ Package: mlho
 Type: Package
 Title: Machine Learning for Health Outcomes (MLHO)
 Version: 0.1.0
-Author: Hossein Estiri, PhD <hestiri at mgh.harvard dot edu>
-Maintainer: Hossein Estiri <hestiri at mgh.harvard dot edu>
+Author: Hossein Estiri <estiri.hossein@gmail.com>
+Maintainer: Hossein Estiri <estiri.hossein@gmail.com>
 Description: This package provides tools and functions to implement the MLHO (pronounced as melo) pipeline.
-    MLHO is an end-to-end Machine Learning pipeline that implements iterative sequential representation mining and feature and model selection to predict health outcomes..
-License: What license is it under?
+    MLHO is an end-to-end Machine Learning pipeline that implements iterative sequential representation mining and feature and model selection to predict health outcomes.
+Depends: R (>= 3.1.0)
+License: LGPL (>= 2.0, < 3) | Mozilla Public License
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Suggests: knitr,clusterGeneration
+Imports: dplyr, tidytext, ggplot2, reshape2, plyr, stringr, DT, data.table, devtools, mboost, caret, pROC, PRROC
+
