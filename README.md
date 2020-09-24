@@ -14,10 +14,10 @@ selection to predict health outcomes.
 ## Installation
 
 You can install the released version of mlho from
-[Github](https://CRAN.R-project.org) with:
+[Github](https://https://github.com/hestiri/mlho) with:
 
 ``` r
-install.packages("mlho")
+devtools::install_github("hestiri/mlho")
 ```
 
 ## Example

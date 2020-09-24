@@ -23,10 +23,10 @@ MLHO is an end-to-end Machine Learning pipeline that implements iterative sequen
 
 ## Installation
 
-You can install the released version of mlho from [Github](https://CRAN.R-project.org) with:
+You can install the released version of mlho from [Github](https://https://github.com/hestiri/mlho) with:
 
 ``` r
-install.packages("mlho")
+devtools::install_github("hestiri/mlho")
 ```
 
 ## Example
