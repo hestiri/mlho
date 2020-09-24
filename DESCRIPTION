@@ -12,6 +12,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-Suggests: knitr,clusterGeneration
+Suggests: 
+    knitr,
+    rmarkdown
 Imports: dplyr, tidytext, ggplot2, reshape2, plyr, stringr, DT, data.table, devtools, mboost, caret, pROC, PRROC
-

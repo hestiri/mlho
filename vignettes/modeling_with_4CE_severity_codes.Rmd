@@ -1,0 +1,19 @@
+---
+title: "modeling_with_4CE_severity_codes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{modeling_with_4CE_severity_codes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(mlho)
+```
