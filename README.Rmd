@@ -29,27 +29,25 @@ You can install the released version of mlho from [Github](https://https://githu
 devtools::install_github("hestiri/mlho")
 ```
 
-## Example
+## Data model
 
-This is a basic example which shows you how to solve a common problem:
+To implement MLHO you'll need 2 tables, which can be extracted from any clinical CMD. The current examples are based on the i2b2 star schema.
 
-```{r example}
-library(mlho)
-## basic example code
+#### 1-  a table with outcome labels (in factor format) and patient numbers
+```{r,echo=FALSE,warning=FALSE}
+knitr::kable(
+  rbind(c("patient_num","label"),
+                   c("character","factor"))
+)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
+
+#### 2- a table with 3 columns: patient_num | start_date | concept_cd (concepts are the features for MLHO).
+
+```{r,echo=FALSE,warning=FALSE}
+knitr::kable(
+  rbind(c("patient_num","start_date","oncept_cd"),
+                   c("character","date","character"))
+)
 ```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
