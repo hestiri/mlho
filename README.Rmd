@@ -33,7 +33,7 @@ devtools::install_github("hestiri/mlho")
 
 To implement MLHO you'll need 2 tables, which can be extracted from any clinical CMD. The current examples are based on the i2b2 star schema.
 
-#### 1-  a table with outcome labels (in factor format) and patient numbers
+1-  a table with outcome labels (called labeldt) and patient numbers
 ```{r,echo=FALSE,warning=FALSE}
 knitr::kable(
   rbind(c("patient_num","label"),
@@ -43,7 +43,7 @@ knitr::kable(
 
 
 
-#### 2- a table with 3 columns: patient_num | start_date | concept_cd (concepts are the features for MLHO).
+2- a patient clinical data table (called dbmart) with 3 columns. Concepts are used as features by MLHO.
 
 ```{r,echo=FALSE,warning=FALSE}
 knitr::kable(
@@ -51,3 +51,5 @@ knitr::kable(
                    c("character","date","character"))
 )
 ```
+
+3- a demographic table is optional.

@@ -17,3 +17,37 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(mlho)
 ```
+## Data model
+
+To implement this analysis, you'll need 2 tables, which can be extracted from any clinical CMD. The current examples are based on the i2b2 star schema.
+
+1-  a demographic table with outcome labels (called dems), demographic columns of interest, and patient numbers
+```{r,echo=FALSE,warning=FALSE}
+knitr::kable(
+  rbind(c("","patient_num",".. demographic columns ..","label"),
+                   c("TYPE","character","character","factor"))
+)
+```
+
+
+
+2- a patient clinical data table (called dbmart) with 3 columns. 
+
+```{r,echo=FALSE,warning=FALSE}
+knitr::kable(
+  rbind(c("patient_num","start_date","oncept_cd"),
+                   c("character","date","character"))
+)
+```
+Below is an example SQL code pulled through RODBC
+
+```{r} 
+# dbmart <- sqlQuery(odbc,paste0("select f.patient_num, f.encounter_num, f.start_date, c.concept_cd from COVID19_Mart.RPDR.OBSERVATION_FACT_RPDR f 
+#                                   inner join COVID19_Mart.RPDR.VISIT_DIMENSION v on f.patient_num = v.patient_num and f.encounter_num = v.encounter_num
+#                                   inner join COVID19_Mart.RPDR.CONCEPT_DIMENSION c on f.concept_cd=c.concept_cd
+#                                   where f.patient_num in ('",paste(dems$patient_num,collapse = "','"),"')"))
+```
+
+
+
+
