@@ -52,5 +52,6 @@ datebuff <- function(data,
     dbmart$start_date <- as.POSIXct(dbmart$start_date, "%Y-%m-%d")
   }
 
+
   return(dbmart)
 }
