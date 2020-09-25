@@ -4,16 +4,19 @@
 \alias{datebuff}
 \title{datebuff}
 \usage{
-datebuff(uniqpats, dbmart, dems, eve)
+datebuff(data, demographics, patients, eve, numdays = 0, use)
 }
 \arguments{
-\item{uniqpats}{a vector of unique patients numbers}
+\item{data}{dbmart}
 
-\item{dbmart}{the datamart according to}
+\item{demographics}{demographics table}
 
-\item{dems}{the table including the demographic and event date/status data}
+\item{patients}{a vector of unique patients numbers}
 
-\item{eve}{is the event of interest}
+\item{eve}{the column in the dems table indicating the date for event of interest}
+
+\item{numdays}{number of buffer days -- defaults at 0
+#' @param use use data from before or after the buffer days}
 }
 \value{
 the updated data mart
@@ -22,5 +25,5 @@ the updated data mart
 datebuff
 }
 \examples{
-see vingetes
+see vignettes
 }

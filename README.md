@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mlho
+# Hello MLHO\!
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-MLHO is an end-to-end Machine Learning pipeline that implements
-iterative sequential representation mining and feature and model
-selection to predict health outcomes.
+MLHO (pronounced as melo) is an end-to-end Machine Learning pipeline
+that implements iterative sequential representation mining, and feature
+and model selection to predict health outcomes.
 
 ## Installation
 

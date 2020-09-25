@@ -22,7 +22,8 @@ library(mlho)
 
 To implement this analysis, you'll need 2 tables, which can be extracted from any clinical CMD. The current examples are based on the i2b2 star schema.
 
-1-  a demographic table with outcome labels (called dems), demographic columns of interest, and patient numbers
+1-  a demographic table with outcome labels (called dems), demographic columns of interest, and patient numbers. 
+The assumption is that all these patients are hospitalized for COVID-19.
 ```{r,echo=FALSE,warning=FALSE}
 knitr::kable(
   rbind(c("","patient_num",".. demographic columns ..","label"),
@@ -30,18 +31,18 @@ knitr::kable(
 )
 ```
 
+*demographic variables need to be in binary format.*
 
 
 2- a patient clinical data table (called dbmart) with 3 columns. 
-
 ```{r,echo=FALSE,warning=FALSE}
 knitr::kable(
   rbind(c("patient_num","start_date","oncept_cd"),
                    c("character","date","character"))
 )
 ```
-Below is an example SQL code pulled through RODBC
 
+Below is an example SQL code pulled through RODBC
 ```{r} 
 # dbmart <- sqlQuery(odbc,paste0("select f.patient_num, f.encounter_num, f.start_date, c.concept_cd from COVID19_Mart.RPDR.OBSERVATION_FACT_RPDR f 
 #                                   inner join COVID19_Mart.RPDR.VISIT_DIMENSION v on f.patient_num = v.patient_num and f.encounter_num = v.encounter_num
@@ -49,6 +50,44 @@ Below is an example SQL code pulled through RODBC
 #                                   where f.patient_num in ('",paste(dems$patient_num,collapse = "','"),"')"))
 ```
 
+## implementation
+
+### first, data prep and modeling.
+step 1- load the dems and datamart tables
+step 2- here we limit the dbmart concepts to 4CE severity codes. You can use a table with severity codes to subset dbmart.
+step 3- now that your data is ready, get a list of the patient numbers in your tables to use in the datebuff function.
 
 
+```{r}
+#uncomment the following line to execute
+#dbmart <- datebuff(data=dbmart,demographics=dems,eve="hospitallization_date",use="after",patients=uniqpats)
+```
 
+Now we update the list of unique patients.
+```{r}
+#uncomment the following line to execute
+#uniqpats <- c(as.character(unique(dbmart$patient_num)))
+```
+
+step 4- we create a wide table for analysis using the `wideout` function
+```{r}
+#uncomment the following line to execute
+#dbmart.wide <- wideout(data=dbmart,patients=uniqpats)
+```
+
+step 5- the ML part!
+the following code will do an iterative run of the GLM boost and stores the results in the `results` directory.
+```{r}
+#uncomment the following line to execute
+# learn(data= dbmart.wide,
+#       demographics=dems,
+#       augment=FALSE,
+#       tst.size=0.2,
+#       save.model=FALSE,
+#       note="mlho_terst_run",
+#       aoi="Severity",
+#       multicore=TRUE)
+```
+
+
+### Next, we will visualize the results.
