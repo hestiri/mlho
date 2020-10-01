@@ -38,6 +38,3 @@ output includes performance model metrics
 \description{
 Title
 }
-\examples{
-metrix(datval = dat.VAL,model=MODEL,label.col = which( colnames(dat.VAL)=="label" ),note="MLHO model",op=0.5,phenx = "aoi"severity,topn = 123)
-}

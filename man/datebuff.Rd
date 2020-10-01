@@ -15,15 +15,10 @@ datebuff(data, demographics, patients, eve, numdays = 0, use)
 
 \item{eve}{the column in the dems table indicating the date for event of interest}
 
-\item{numdays}{number of buffer days -- defaults at 0
-#' @param use use data from before or after the buffer days}
-}
-\value{
-the updated data mart
+\item{numdays}{number of buffer days -- defaults at 0}
+
+\item{use}{use data from before or after the buffer days}
 }
 \description{
 datebuff
-}
-\examples{
-see vignettes
 }

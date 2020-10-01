@@ -5,12 +5,10 @@
 #' @param demographics demographics table
 #' @param eve the column in the dems table indicating the date for event of interest
 #' @param numdays number of buffer days -- defaults at 0
-#' #' @param use use data from before or after the buffer days
+#' @param use use data from before or after the buffer days
 #'
 #'
-#' @return the updated data mart
 #'
-#' @examples see vignettes
 datebuff <- function(data,
                      demographics,
                      patients,

@@ -12,7 +12,6 @@
 #' @return output includes performance model metrics
 #' @export
 #'
-#' @examples metrix(datval = dat.VAL,model=MODEL,label.col = which( colnames(dat.VAL)=="label" ),note="MLHO model",op=0.5,phenx = "aoi"severity,topn = 123)
 metrix <- function(datval,
                    model,
                    label.col,
