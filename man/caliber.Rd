@@ -19,6 +19,3 @@ a data frame with calibration information
 \description{
 Computes calibration data for classification
 }
-\examples{
-caliber(datval = dat.VAL,model=BOS.model400,label.col = which( colnames(dat.VAL)=="label" ))
-}

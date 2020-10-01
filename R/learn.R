@@ -1,9 +1,9 @@
 #' the ML part
 #'
-#' @param data
-#' @param demographics
+#' @param data the dbmart
+#' @param demographics demographics table
 #' @param augment if you want to add demographic variables to your model set it to TRUE
-#' @param tst.size test/train set ratio -- default set at 0.2 (20%)
+#' @param tst.size test/train set ratio -- default set at 0.2 (20 percent)
 #' @param save.model do you want to save the model?
 #' @param classifier the classification algorithm
 #' @param note add a descriptive word about your modeling
@@ -13,7 +13,6 @@
 #' @return
 #' @export
 #'
-#' @examples
 learn <- function(data,
                   demographics,
                   augment=FALSE,
@@ -32,12 +31,15 @@ learn <- function(data,
     cores<-detectCores()
     cl <- makeCluster(cores[1]-2)
     registerDoParallel(cl)
-  }
+
+    labeldt <- dplyr::select(dems,patient_num,label=sever)
+  } else
   if(augment==TRUE){
     dems2 <- dems[,demographic_variables]
-  }
+    labeldt <- dplyr::select(dems,patient_num,label=sever)
+  } else {
 
-  labeldt <- dplyr::select(dems,patient_num,label=sever)
+  labeldt <- dplyr::select(dems,patient_num,label=sever)}
 
   for (j in 1:9){
     tryCatch({
@@ -119,7 +121,7 @@ learn <- function(data,
       write.csv(cali,file = paste0(getwd(),"/results/cali_",classifier,"_",note,"_",aoi,j,".csv"))
 
     },
-    error = function(m) {cat("ERROR :",conditionMessage(m), "\n")})
+    error = function(mods) {cat("ERROR :",conditionMessage(mods), "\n")})
   }
 
 

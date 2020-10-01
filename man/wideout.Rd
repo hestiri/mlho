@@ -7,6 +7,8 @@
 wideout(data, binarize = FALSE, sparsity = NA, patients)
 }
 \arguments{
+\item{data}{the dbmart}
+
 \item{binarize}{if you want to use the features as binary, set it to TRUE -- default is FALSE}
 
 \item{sparsity}{if the first step of MSMR, set a threshold between 0 and 1 -- 1 is 100 percent!}
@@ -18,7 +20,4 @@ wideout(data, binarize = FALSE, sparsity = NA, patients)
 }
 \description{
 wideout
-}
-\examples{
-see the vignettes
 }

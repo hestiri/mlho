@@ -1,6 +1,6 @@
 #' wideout
 #'
-#' @param data
+#' @param data the dbmart
 #' @param binarize if you want to use the features as binary, set it to TRUE -- default is FALSE
 #' @param sparsity if the first step of MSMR, set a threshold between 0 and 1 -- 1 is 100 percent!
 #' @param patients
@@ -8,7 +8,6 @@
 #' @return
 #' @export
 #'
-#' @examples see the vignettes
 wideout <- function(data,
                     binarize=FALSE,
                     sparsity=NA,

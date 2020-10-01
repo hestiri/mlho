@@ -7,7 +7,6 @@
 #' @return a data frame with calibration information
 #' @export
 #'
-#' @examples caliber(datval = dat.VAL,model=BOS.model400,label.col = which( colnames(dat.VAL)=="label" ))
 caliber <- function(datval,#data on which validation will be computed
                     model,#model!
                     label.col#column number with labels

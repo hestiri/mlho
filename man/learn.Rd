@@ -17,9 +17,13 @@ learn(
 )
 }
 \arguments{
+\item{data}{the dbmart}
+
+\item{demographics}{demographics table}
+
 \item{augment}{if you want to add demographic variables to your model set it to TRUE}
 
-\item{tst.size}{test/train set ratio -- default set at 0.2 (20%)}
+\item{tst.size}{test/train set ratio -- default set at 0.2 (20 percent)}
 
 \item{save.model}{do you want to save the model?}
 
