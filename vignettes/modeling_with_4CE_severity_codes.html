@@ -322,8 +322,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(mlho)</span></code></pre></div>
-<div id="data-model" class="section level2">
-<h2>Data model</h2>
+<div id="step-0-data-model-if-you-have-2.1-data-extracts-skip-to-step-1" class="section level2">
+<h2>Step 0: Data model (if you have 2.1 data extracts, skip to step 1)</h2>
 <p>To implement this analysis, you’ll need 2 tables, which can be extracted from any clinical CMD. The current examples are based on the i2b2 star schema.</p>
 <p>1- a demographic table with outcome labels (called dems), demographic columns of interest, and patient numbers. The assumption is that all these patients are hospitalized for COVID-19.</p>
 <table>
@@ -363,31 +363,58 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co">#                                   inner join COVID19_Mart.RPDR.VISIT_DIMENSION v on f.patient_num = v.patient_num and f.encounter_num = v.encounter_num</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">#                                   inner join COVID19_Mart.RPDR.CONCEPT_DIMENSION c on f.concept_cd=c.concept_cd</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">#                                   where f.patient_num in (&#39;&quot;,paste(dems$patient_num,collapse = &quot;&#39;,&#39;&quot;),&quot;&#39;)&quot;))</span></span></code></pre></div>
-</div>
-<div id="implementation" class="section level2">
-<h2>implementation</h2>
-<div id="first-data-prep-and-modeling." class="section level3">
-<h3>first, data prep and modeling.</h3>
-<p>step 1- load the dems and datamart tables step 2- here we limit the dbmart concepts to 4CE severity codes. You can use a table with severity codes to subset dbmart. step 3- now that your data is ready, get a list of the patient numbers in your tables to use in the datebuff function.</p>
+<div id="data-prep-and-modeling." class="section level3">
+<h3>data prep and modeling.<br />
+</h3>
+<p>step 1- load the dems and datamart tables<br />
+step 2- here we limit the dbmart concepts to 4CE severity codes. You can use a table with severity codes to subset dbmart.<br />
+step 3- now that your data is ready, get a list of the patient numbers in your tables to use in the datebuff function.<br />
+</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#uncomment the following line to execute</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#dbmart &lt;- datebuff(data=dbmart,demographics=dems,eve=&quot;hospitallization_date&quot;,use=&quot;after&quot;,patients=uniqpats)</span></span></code></pre></div>
-<p>Now we update the list of unique patients.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#uncomment the following line to execute</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#uniqpats &lt;- c(as.character(unique(dbmart$patient_num)))</span></span></code></pre></div>
-<p>step 4- we create a wide table for analysis using the <code>wideout</code> function</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#uncomment the following line to execute</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#dbmart.wide &lt;- wideout(data=dbmart,patients=uniqpats)</span></span></code></pre></div>
-<p>step 5- the ML part! the following code will do an iterative run of the GLM boost and stores the results in the <code>results</code> directory.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#uncomment the following line to execute</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># learn(data= dbmart.wide,</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#       demographics=dems,</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#       augment=FALSE,</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#       tst.size=0.2,</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#       save.model=FALSE,</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#       note=&quot;mlho_terst_run&quot;,</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#       aoi=&quot;Severity&quot;,</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#       multicore=TRUE)</span></span></code></pre></div>
 </div>
+</div>
+<div id="step-1-load-and-prepare-phase-2.1-data-if-you-did-step-0-skip-to-step-2" class="section level2">
+<h2>Step 1: Load and prepare Phase 2.1 data (if you did Step 0, skip to step 2)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#uncomment the following line to execute</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#PatientMapping &lt;- read.csv(file.choose()) ## this will open a window to select the .csv file</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#PatientObservations &lt;- read.csv(file.choose())</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#PatientClinicalCourse &lt;- read.csv(file.choose())</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#PatientSummary &lt;- read.csv(file.choose())</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#severcode &lt;- read.csv(file.choose()) ##list of severe codes</span></span></code></pre></div>
+<p>###extract MLHO tables from Phase 2.1 tables</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#uncomment the following line to execute</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a> <span class="co"># labeldt &lt;- PatientSummary %&gt;% dplyr::select(patient_num,label=severe) %&gt;% mutate(label=factor(label))</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a> </span>
+<span id="cb5-4"><a href="#cb5-4"></a> <span class="co">#dbmart &lt;- PatientObservations %&gt;% </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="co">#dplyr::filter(days_since_admission &gt;= 0) %&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="co">#dplyr::filter(days_since_admission %in% severcode$concept_cd) %&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="co">#dplyr::select(patient_num,start_date=days_since_admission,phenx=concept_code)</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#dems&lt;-as.data.frame(model.matrix(~ . + 0, data=PatientSummary[,c(1,10,11,12)], contrasts.arg = lapply(PatientSummary[,c(10,11,12)],</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#contrasts, contrasts=FALSE)))</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#dems$sexMale &lt;- NULL</span></span></code></pre></div>
+</div>
+<div id="step-2-implementation" class="section level2">
+<h2>Step 2: Implementation</h2>
+<p>Now we update the list of unique patients.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#uncomment the following line to execute</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#uniqpats &lt;- c(as.character(unique(dbmart$patient_num)))</span></span></code></pre></div>
+<p>step 4- we create a wide table for analysis using the <code>wideout</code> function</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#uncomment the following line to execute</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#dbmart.wide &lt;- wideout(data=dbmart,patients=uniqpats)</span></span></code></pre></div>
+<p>step 5- the ML part! the following function will do an iterative run of the GLM boost and stores the results in the <code>results</code> directory.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#uncomment the following line to execute</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># learn(data= dbmart.wide,</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#       demographics=dems,</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#       augment=FALSE,</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#       tst.size=0.2,</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#       save.model=FALSE,</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#       note=&quot;mlho_terst_run&quot;,</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#       aoi=&quot;Severity&quot;,</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#       multicore=TRUE)</span></span></code></pre></div>
 <div id="next-we-will-visualize-the-results." class="section level3">
 <h3>Next, we will visualize the results.</h3>
 </div>
