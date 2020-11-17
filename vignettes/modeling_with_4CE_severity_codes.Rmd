@@ -70,7 +70,7 @@ step 3- now that your data is ready, get a list of the patient numbers in your t
 #severcode <- read.csv(file.choose()) ##list of severe codes
 ```
  
- ###extract MLHO tables from Phase 2.1 tables
+###extract MLHO tables from Phase 2.1 tables
  
 ```{r}
 #uncomment the following line to execute
