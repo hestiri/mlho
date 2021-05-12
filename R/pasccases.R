@@ -391,7 +391,6 @@ pasccases <- function(PatientObservations,
     case2plot=pl2,
     case3plot=pl3,
     case4plot= pl4,
-    case4=case4,
     case5_pre=case5_pre,
     case5_preduri=case5_preduri)
 
