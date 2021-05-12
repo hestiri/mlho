@@ -25,7 +25,7 @@ First thing is to load the 2.1 data plus the ICD-10-phecode mapping file that co
 
 ```{r}
 # data(pHE_map)
-# 
+# force(phe_map_unique)
 # PatientObservations <- read_csv(file.choose())
 # PatientClinical <- read_csv(file.choose())
 # PatientSummary <- read_csv(file.choose())

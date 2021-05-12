@@ -1,4 +1,4 @@
-#' 5 PASC cases
+#' The 5 PASC cases
 #'
 #' @param PatientObservations 2.1 PatientObservations table should include 4-digit ICD codes
 #' @param PatientClinicalCourse 2.1 PatientClinicalCourse table
