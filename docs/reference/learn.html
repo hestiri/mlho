@@ -40,6 +40,7 @@
 
 
 <meta property="og:title" content="the ML part — learn" />
+<meta property="og:description" content="the ML part" />
 
 
 
@@ -94,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/PASC_cases.html">PASC_cases</a>
+    </li>
+    <li>
       <a href="../articles/modeling_with_4CE_severity_codes.html">modeling_with_4CE_severity_codes</a>
     </li>
   </ul>
@@ -125,6 +129,7 @@
     </div>
 
     <div class="ref-description">
+    <p>the ML part</p>
     </div>
 
     <pre class="usage"><span class='fu'>learn</span><span class='op'>(</span>
@@ -143,19 +148,47 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>the dbmart</p></td>
+    </tr>
+    <tr>
+      <th>demographics</th>
+      <td><p>demographics table</p></td>
+    </tr>
+    <tr>
       <th>augment</th>
       <td><p>if you want to add demographic variables to your model set it to TRUE</p></td>
     </tr>
     <tr>
       <th>tst.size</th>
-      <td><p>test/train set ratio -- default set at 0.2 (20<!-- %)} --></p>
-<p>save.modeldo you want to save the model?</p>
-<p>classifierthe classification algorithm</p>
-<p>noteadd a descriptive word about your modeling</p>
-<p>aoioutcome of interest</p>
-<p>multicoredo you want to parallelize the process?</p></td>
+      <td><p>test/train set ratio -- default set at 0.2 (20 percent)</p></td>
+    </tr>
+    <tr>
+      <th>save.model</th>
+      <td><p>do you want to save the model?</p></td>
+    </tr>
+    <tr>
+      <th>classifier</th>
+      <td><p>the classification algorithm</p></td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td><p>add a descriptive word about your modeling</p></td>
+    </tr>
+    <tr>
+      <th>aoi</th>
+      <td><p>outcome of interest</p></td>
+    </tr>
+    <tr>
+      <th>multicore</th>
+      <td><p>do you want to parallelize the process?</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
 
 
   </div>

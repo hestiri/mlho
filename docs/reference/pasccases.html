@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Computes calibration data for classification — caliber • mlho</title>
+<title>Title — pasccases • mlho</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Computes calibration data for classification — caliber" />
-<meta property="og:description" content="Computes calibration data for classification" />
+<meta property="og:title" content="Title — pasccases" />
+<meta property="og:description" content="Title" />
 
 
 
@@ -123,37 +123,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Computes calibration data for classification</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/caliberation.R'><code>R/caliberation.R</code></a></small>
-    <div class="hidden name"><code>caliber.Rd</code></div>
+    <h1>Title</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/pasccases.R'><code>R/pasccases.R</code></a></small>
+    <div class="hidden name"><code>pasccases.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Computes calibration data for classification</p>
+    <p>Title</p>
     </div>
 
-    <pre class="usage"><span class='fu'>caliber</span><span class='op'>(</span><span class='va'>datval</span>, <span class='va'>model</span>, <span class='va'>label.col</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pasccases</span><span class='op'>(</span>
+  <span class='va'>PatientObservations</span>,
+  <span class='va'>PatientClinicalCourse</span>,
+  <span class='va'>PatientSummary</span>,
+  loyaltydays1 <span class='op'>=</span> <span class='fl'>90</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>datval</th>
-      <td><p>testing data</p></td>
+      <th>PatientObservations</th>
+      <td><p>2.1 PatientObservations table should include 4-digit ICD codes</p></td>
     </tr>
     <tr>
-      <th>model</th>
-      <td><p>model</p></td>
+      <th>PatientClinicalCourse</th>
+      <td><p>2.1 PatientClinicalCourse table</p></td>
     </tr>
     <tr>
-      <th>label.col</th>
-      <td><p>the column number with labels</p></td>
+      <th>PatientSummary</th>
+      <td><p>2.1 PatientSummary table</p></td>
+    </tr>
+    <tr>
+      <th>loyaltydays1</th>
+      <td><p>work as the minimum days before and after hospitalization to be assumed loyal</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame with calibration information</p>
+    <p>plots for cases 1-4 and data for cases 4 and 5</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

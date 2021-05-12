@@ -2,7 +2,7 @@
 % Please edit documentation in R/pasccases.R
 \name{pasccases}
 \alias{pasccases}
-\title{Title}
+\title{5 PASC cases}
 \usage{
 pasccases(
   PatientObservations,
@@ -24,5 +24,5 @@ pasccases(
 plots for cases 1-4 and data for cases 4 and 5
 }
 \description{
-Title
+5 PASC cases
 }
