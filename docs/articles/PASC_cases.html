@@ -324,7 +324,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h2>How to create the 5 post-acute sequelae of sars-cov-2 infection (pasc)</h2>
 <p>First thing is to load the 2.1 data plus the ICD-10-phecode mapping file that comes with the package <em>4-digit ICD-10 codes are needed for mapping</em></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># data(pHE_map)</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># force(phe_map_unique)</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># PatientObservations &lt;- read_csv(file.choose())</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co"># PatientClinical &lt;- read_csv(file.choose())</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co"># PatientSummary &lt;- read_csv(file.choose())</span></span></code></pre></div>
