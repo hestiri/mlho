@@ -1,15 +1,15 @@
-#' The 5 PASC cases
+#' Title
 #'
 #' @param PatientObservations 2.1 PatientObservations table should include 4-digit ICD codes
 #' @param PatientClinicalCourse 2.1 PatientClinicalCourse table
 #' @param PatientSummary 2.1 PatientSummary table
-#' @param loyaltydays1 work as the minimum days before and after hospitalization to be assumed loyal
+#' @param loyaltydays1 works as the minimum days before and after hospitalization to be assumed loyal
 #'
 #' @return plots for cases 1-4 and data for cases 4 and 5
 #' @export
+#'
 
-
-pasccases <- function(PatientObservations,
+pasc5 <- function(PatientObservations,
                       PatientClinicalCourse,
                       PatientSummary,
                       loyaltydays1 = 90
@@ -395,6 +395,4 @@ pasccases <- function(PatientObservations,
     case5_pre=case5_pre,
     case5_preduri=case5_preduri)
 
-  )
-
-}
+  )}

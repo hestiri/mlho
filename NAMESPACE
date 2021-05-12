@@ -3,4 +3,6 @@
 export(caliber)
 export(learn)
 export(metrix)
+export(pasc5)
+export(pasccases)
 export(wideout)
