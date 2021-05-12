@@ -15,6 +15,6 @@ VignetteBuilder: knitr
 Suggests: 
     knitr,
     rmarkdown
-Imports: dplyr, tidytext, ggplot2, reshape2, plyr, stringr, DT, data.table, devtools, mboost, caret, pROC, PRROC, ModelMetrics,reshape2, foreach, doParallel, easypackages, praznik, InformationValue
+Imports: tidytext, ggplot2, reshape2, plyr, lubridate,stringr,tidyverse, readr,DT, data.table,dplyr, devtools,data.table,Hmisc,scales,viridis, tidyr, mboost, caret, pROC, PRROC, ModelMetrics,reshape2, foreach, doParallel, easypackages, praznik, InformationValue
 URL: https://github.com/hestiri/mlho
 BugReports: https://github.com/hestiri/mlho/issues
