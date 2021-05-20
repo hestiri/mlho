@@ -1,11 +1,12 @@
 ---
-title: "PASC_cases"
+title: "PASC-analysis"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PASC_cases}
+  %\VignetteIndexEntry{PASC-analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -39,11 +40,11 @@ Then, run the function (it'll take a few minutes depending on the size of the da
 
 Results would be as follows:.
 ```{r}
-# test_run$case1plot ##case 1 bubble chart
-# test_run$case2plot
-# test_run$case3plot
-# test_run$case4plot
-# case5_pre <- test_run$case5_pre
-# case5_preduri <- test_run$case5_preduri
+# test_run$analysis1plot ##case 1 bubble chart
+# test_run$analysis2plot
+# test_run$analysis3plot
+# test_run$analysis4plot
+# case5_pre <- test_run$analysis5_pre
+# case5_preduri <- test_run$analysis5_preduri
 ```
 

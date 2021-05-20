@@ -114,7 +114,7 @@ pasccases <- function(PatientObservations,
   LocalPatientObservationsAllDigits$week <- ifelse(LocalPatientObservationsAllDigits$days_since_admission_sim >= 0, ceiling(LocalPatientObservationsAllDigits$days_since_admission_sim/7),
                                                    floor(LocalPatientObservationsAllDigits$days_since_admission_sim/7))
 
-  print("computing case 1")
+  print("computing analysis 1")
   ####################################   case 1   ####################################
   ###what are the top records
   records <- data.frame(LocalPatientObservationsAllDigits %>%
@@ -142,10 +142,10 @@ pasccases <- function(PatientObservations,
       theme(legend.position="bottom") +
       # ylab("Life Expectancy") +
       xlab("Months since hospitalization") +
-      labs(size="cohort size",title = "Case #1:",subtitle = "counting all codes",y="",caption="* -1 sums all months prior to hospitalization"))
+      labs(size="cohort size",title = "Analysis #1:",subtitle = "counting all codes",y="",caption="* -1 sums all months prior to hospitalization"))
   # ggsave(filename="~/workspace/PASC/4CE_Case1.png", pl1, dpi = 300, width = 10, height = 7)
 
-  print("computing case 2")
+  print("computing analysis 2")
 
   ########################################################################
   ####################################      ####################################
@@ -198,14 +198,14 @@ pasccases <- function(PatientObservations,
       theme(legend.position="bottom") +
       # ylab("Life Expectancy") +
       xlab("Months since hospitalization") +
-      labs(size="cohort size",title = "Case #2:",subtitle = "counting all new codes on adischarge and after",y=""))
+      labs(size="cohort size",title = "Analysis #2:",subtitle = "counting all new codes on adischarge and after",y=""))
   # ggsave(filename="~/workspace/PASC/4CE_Case2.png", pl2, dpi = 300, width = 10, height = 7)
 
 
   ########################################################################
   ####################################      ####################################
   ###let's do the 3rd case if a diagnosis was recorded on and before discharge, it wont be counted
-  print("computing case 3")
+  print("computing analysis 3")
 
   ########################################################################
   ####################################      ####################################
@@ -251,11 +251,11 @@ pasccases <- function(PatientObservations,
       theme(legend.position="bottom") +
       # ylab("Life Expectancy") +
       xlab("Months since hospitalization") +
-      labs(size="cohort size",title = "Case #3:",subtitle = "counting all new codes after discharge",y=""))
+      labs(size="cohort size",title = "Analysis #3:",subtitle = "counting all new codes after discharge",y=""))
   # ggsave(filename="~/workspace/PASC/4CE_Case3.png", pl3, dpi = 300, width = 10, height = 7)
 
 
-  print("computing case 4: parallel from now on")
+  print("computing analysis 4: parallel from now on")
 
   ##########################################################################################
   ##############################      ########################################     #####
@@ -326,10 +326,10 @@ pasccases <- function(PatientObservations,
       theme(legend.position="bottom") +
       # ylab("Life Expectancy") +
       xlab("Months since hospitalization") +
-      labs(size="cohort size",title = "Case #4:",subtitle = "counting first records of new codes after discharge",y=""))
+      labs(size="cohort size",title = "Analysis #4:",subtitle = "counting first records of new codes after discharge",y=""))
   # ggsave(filename="~/workspace/PASC/4CE_Case4.png", pl4, dpi = 300, width = 10, height = 7)
 
-  print("computing case 5, pre-admission")
+  print("computing analysis 5, pre-admission")
 
   ####
   ########################################################################
@@ -360,7 +360,7 @@ pasccases <- function(PatientObservations,
 
   case5_pre$RR <- case5_pre$risk_post/case5_pre$risk_pre ##relative risk that ignores NAs
 
-  print("computing case 5, pre- & during admission")
+  print("computing analysis 5, pre- & during admission")
 
   ##################       ##################
   ################## # case 5 preduri compares preadmission to case 4
@@ -387,12 +387,12 @@ pasccases <- function(PatientObservations,
   case5_preduri$RR <- case5_preduri$risk_post/case5_preduri$risk_preduri ##relative risk that ignores NAs
 
   return(list(
-    case1plot=pl1,
-    case2plot=pl2,
-    case3plot=pl3,
-    case4plot= pl4,
-    case5_pre=case5_pre,
-    case5_preduri=case5_preduri)
+    analysis1plot=pl1,
+    analysis2plot=pl2,
+    analysis3plot=pl3,
+    analysis4plot= pl4,
+    analysis5_pre=case5_pre,
+    analysis5_preduri=case5_preduri)
 
   )
 
