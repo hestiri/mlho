@@ -35,7 +35,7 @@ First thing is to load the 2.1 data plus the ICD-10-phecode mapping file that co
 
 Then, run the function (it'll take a few minutes depending on the size of the data)
 ```{r}
-# test_run <- pasccases(PatientObservations,PatientClinical,PatientSummary,loyaltydays1=90)
+# test_run <- pasccases(PatientObservations,PatientClinical,PatientSummary,continuitydays1=90)
 ```
 
 Results would be as follows:.

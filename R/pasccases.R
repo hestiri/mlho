@@ -3,7 +3,7 @@
 #' @param PatientObservations 2.1 PatientObservations table should include 4-digit ICD codes
 #' @param PatientClinicalCourse 2.1 PatientClinicalCourse table
 #' @param PatientSummary 2.1 PatientSummary table
-#' @param loyaltydays1 work as the minimum days before and after hospitalization to be assumed loyal
+#' @param continuitydays1 work as the minimum days before and after hospitalization to be assumed loyal
 #'
 #' @return plots for cases 1-4 and data for cases 4 and 5
 #' @export
@@ -12,7 +12,7 @@
 pasccases <- function(PatientObservations,
                       PatientClinicalCourse,
                       PatientSummary,
-                      loyaltydays1 = 90
+                      continuitydays1 = 90
 
 
 
@@ -26,7 +26,7 @@ pasccases <- function(PatientObservations,
   LocalPatientObservationsAllDigits <- PatientObservations
   LocalPatientClinicalCourse <- PatientClinicalCourse
   LocalPatientSummary <- PatientSummary
-  dys1 <- loyaltydays1
+  dys1 <- continuitydays1
   ###
 
   LocalPatientObservationsAllDigits$patient_num <- as.character(LocalPatientObservationsAllDigits$patient_num)

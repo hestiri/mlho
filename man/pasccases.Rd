@@ -8,7 +8,7 @@ pasccases(
   PatientObservations,
   PatientClinicalCourse,
   PatientSummary,
-  loyaltydays1 = 90
+  continuitydays1 = 90
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ pasccases(
 
 \item{PatientSummary}{2.1 PatientSummary table}
 
-\item{loyaltydays1}{work as the minimum days before and after hospitalization to be assumed loyal}
+\item{continuitydays1}{work as the minimum days before and after hospitalization to be assumed loyal}
 }
 \value{
 plots for cases 1-4 and data for cases 4 and 5
