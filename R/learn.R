@@ -112,6 +112,13 @@ learn <- function(data,
       cali$classifier <- classifier
       cali$phenx <- aoi
 
+      ##error
+      err <- absErr(datval = dat.VAL,model=model,label.col = which( colnames(dat.VAL)=="label" ))
+      err$iteration <- j
+      err$classifier <- classifier
+      err$phenx <- aoi
+
+
       if(save.model==TRUE){
         ##save the model
         saveRDS(model, paste0(getwd(),"/results/model_",classifier,"_",note,"_",aoi,j,".rds"))
@@ -119,6 +126,8 @@ learn <- function(data,
       write.csv(ROC,file = paste0(getwd(),"/results/ROC_",classifier,"_",note,"_",aoi,j,".csv"))
       write.csv(coefficients,file = paste0(getwd(),"/results/coeffs_",classifier,"_",note,"_",aoi,j,".csv"))
       write.csv(cali,file = paste0(getwd(),"/results/cali_",classifier,"_",note,"_",aoi,j,".csv"))
+      write.csv(err,file = paste0(getwd(),"/results/err_",classifier,"_",note,"_",aoi,j,".csv"))
+
 
     },
     error = function(mods) {cat("ERROR :",conditionMessage(mods), "\n")})
