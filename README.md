@@ -64,3 +64,28 @@ mlho input data model from
 [SyntheaTM](https://synthetichealth.github.io/synthea/), an open-source
 patient population simulation made available by [The MITRE
 Corporation](https://health.mitre.org/).
+
+``` r
+library(mlho)
+data("syntheticmass")
+```
+
+here’s how `dbmart` table looks:
+
+``` r
+head(dbmart)
+#>                            patient_num                        encounter_num
+#> 1 8d4c4326-e9de-4f45-9a4c-f8c36bff89ae 6aa37300-d1b4-48e7-a2f8-5e0f70f48f38
+#> 2 10339b10-3cd1-4ac3-ac13-ec26728cb592 dae2b7cb-1316-4b78-954f-fa610a6c6d0e
+#> 3 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 7ff86631-0378-4bfc-92ce-1edd697eb18e
+#> 4 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a b8f76eba-7795-4dcd-a544-f27ac2ef3d46
+#> 5 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 640837d9-845a-433c-9fad-47426664a69d
+#> 6 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 1923c698-accd-4d70-ba09-e1938f6e96d1
+#>       phenx                             DESCRIPTION          start_date
+#> 1 169553002 Insertion of subcutaneous contraceptive 2011-04-30 00:26:23
+#> 2 430193006   Medication Reconciliation (procedure) 2010-07-27 12:58:08
+#> 3 430193006   Medication Reconciliation (procedure) 2010-11-20 03:04:34
+#> 4 117015009              Throat culture (procedure) 2011-02-07 03:04:34
+#> 5 117015009              Throat culture (procedure) 2011-04-19 03:04:34
+#> 6 430193006   Medication Reconciliation (procedure) 2011-11-26 03:04:34
+```
