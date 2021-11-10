@@ -33,9 +33,9 @@ MSMSR.lite <- function(MLHO.dat,
     avrs <- c(as.character(subset(MLHO.dat.agg$phenx,MLHO.dat.agg$distinct_patients > round(length(patients)*sparsity))))
     MLHO.dat <- subset(MLHO.dat,MLHO.dat$phenx %in% avrs)
   }
-  setDT(MLHO.dat)
-  MLHO.dat[,row := .I]
-  MLHO.dat$value.var <- 1
+  # setDT(MLHO.dat)
+  # MLHO.dat[,row := .I]
+  # MLHO.dat$value.var <- 1
 
   MLHO.dat.wide <- reshape2::dcast(MLHO.dat, patient_num ~ phenx, value.var="value.var", fun.aggregate = length)
   MLHO.dat.wide <- as.data.frame(MLHO.dat.wide)
