@@ -7,9 +7,9 @@
 
 <!-- badges: end -->
 
-MLHO (pronounced as melo) is an end-to-end Machine Learning pipeline
-that implements iterative sequential representation mining, and feature
-and model selection to predict health outcomes.
+MLHO (pronounced as melo) is a thinkin’ Machine Learning framework that
+implements iterative sequential representation mining, and feature and
+model selection to predict health outcomes.
 
 ## Installation
 
