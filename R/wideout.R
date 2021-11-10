@@ -14,9 +14,9 @@ wideout <- function(data,
                     patients)
 {
   dbmart <- data
-  setDT(dbmart)
-  dbmart[,row := .I]
-  dbmart$value.var <- 1
+  # setDT(dbmart)
+  # dbmart[,row := .I]
+  # dbmart$value.var <- 1
 
 
   # aggregating by unique patients
