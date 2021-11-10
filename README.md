@@ -96,3 +96,8 @@ sex\_cd, which we store under `dems.names`:
 ``` r
 dems.names <- colnames(dems)
 ```
+
+### MSMR lite
+
+from here, we will split the data into a train and a test set and apply
+`MSMR.lite` to the training data

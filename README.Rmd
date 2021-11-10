@@ -86,3 +86,6 @@ our demographic table contains: `r colnames(dems)`, which we store under `dems.n
 dems.names <- colnames(dems)
 ```
 
+
+### MSMR lite
+from here, we will split the data into a train and a test set and apply `MSMR.lite` to the training data
