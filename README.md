@@ -89,3 +89,10 @@ head(dbmart)
 #> 5 117015009              Throat culture (procedure) 2011-04-19 03:04:34
 #> 6 430193006   Medication Reconciliation (procedure) 2011-11-26 03:04:34
 ```
+
+our demographic table contains: patient\_num, white, black, hispanic,
+sex\_cd, which we store under `dems.names`:
+
+``` r
+dems.names <- colnames(dems)
+```

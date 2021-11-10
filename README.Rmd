@@ -81,5 +81,8 @@ here's how `dbmart` table looks:
 ```{r}
 head(dbmart)
 ```
-
+our demographic table contains: `r colnames(dems)`, which we store under `dems.names`:
+```{r}
+dems.names <- colnames(dems)
+```
 
