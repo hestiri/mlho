@@ -16,24 +16,24 @@ MSMSR.lite(
 )
 }
 \arguments{
-\item{MLHO.dat}{## your dbmart}
+\item{MLHO.dat}{your dbmart goes here}
 
-\item{labels}{##your labeldt}
+\item{labels}{your labeldt goes here}
 
-\item{binarize}{## do you want the output matrix be binarized?}
+\item{binarize}{if you want the outcome to be binary}
 
-\item{sparsity}{## step 1 of MSMR. 0.1 = 10% prevalence as minimum}
+\item{sparsity}{if you want to apply sparsity}
 
-\item{jmi}{## perform the joint mutual information}
+\item{jmi}{if you want to do jmi}
 
-\item{topn}{## what is the top n features you want after jmi?}
+\item{topn}{the number of features to be selected}
 
-\item{patients}{## vector of the unique patients}
+\item{patients}{vector of patients}
 
-\item{multicore}{## do you want to paralelize the compute?}
+\item{multicore}{if you want to parallelize the jmi}
 }
 \value{
-##AVR training set
+
 }
 \description{
 MSMR lite

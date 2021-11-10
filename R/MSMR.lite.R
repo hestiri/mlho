@@ -1,17 +1,19 @@
 
 #' MSMR lite
 #'
-#' @param MLHO.dat ## your dbmart
-#' @param labels ##your labeldt
-#' @param binarize ## do you want the output matrix be binarized?
-#' @param sparsity ## step 1 of MSMR. 0.1 = 10% prevalence as minimum
-#' @param jmi ## perform the joint mutual information
-#' @param topn ## what is the top n features you want after jmi?
-#' @param patients ## vector of the unique patients
-#' @param multicore ## do you want to paralelize the compute?
+#' @param MLHO.dat your dbmart goes here
+#' @param labels your labeldt goes here
+#' @param binarize if you want the outcome to be binary
+#' @param sparsity if you want to apply sparsity
+#' @param jmi if you want to do jmi
+#' @param topn the number of features to be selected
+#' @param patients vector of patients
+#' @param multicore if you want to parallelize the jmi
 #'
-#' @return ##AVR training set
+#' @return
+#' @export
 #'
+
 MSMSR.lite <- function(MLHO.dat,
                        labels,
                        binarize=FALSE,
@@ -24,10 +26,10 @@ MSMSR.lite <- function(MLHO.dat,
   print("step - 1: sparsity screening!")
   require("plyr");require("DT")
 
-  # aggregating by unique patients
+  ## aggregating by unique patients
   MLHO.dat.agg <- plyr::ddply(MLHO.dat, ~ phenx,summarise,distinct_patients=length(unique(patient_num)))
   if(!is.na(sparsity)){
-    #remove low-prevalence features
+    ##remove low-prevalence features
     avrs <- c(as.character(subset(MLHO.dat.agg$phenx,MLHO.dat.agg$distinct_patients > round(length(patients)*sparsity))))
     MLHO.dat <- subset(MLHO.dat,MLHO.dat$phenx %in% avrs)
   }
