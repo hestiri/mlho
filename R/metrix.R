@@ -21,6 +21,7 @@ metrix <- function(datval,
                    topn,
                    class="binary"
 ){
+  require(pROC);require(PRROC);require(ModelMetrics)
 
   if (class == "binary"){
     datval[c("N","Y")] <- data.frame(predict(model, newdata = datval, type = "prob"))
