@@ -114,7 +114,7 @@ mlearn <- function(dat.train,
     ROC=ROC,
     coefficients=coefficients,
     calibrations=cali,
-    MAE=err,
+    AE=err,
     missing.features=test.miss
   ))
 }
