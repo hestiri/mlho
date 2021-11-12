@@ -1,8 +1,9 @@
 ---
-title: "MLHO Vanila"
+title: "MLHO Vanilla implementation"
+author: Hossein Estiri
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{MLHO_Vanila}
+  %\VignetteIndexEntry{MLHO_Vanilla}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
