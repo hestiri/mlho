@@ -73,6 +73,7 @@ mlearn <- function(dat.train,
                             , method = classifier
                             ,preProc)
 
+      test_feats <- c(as.character(names(dat.test)))
       test.miss <- setdiff(names(dat.train),names(dat.test))
       dat.test[test.miss] <- 0
 
@@ -83,13 +84,21 @@ mlearn <- function(dat.train,
       ROC$classifier <- classifier
 
       ##coefficients
-      coefficients <- data.frame(unlist(coef(model$finalModel, model$bestTune$lambda)))
-      colnames(coefficients) <- "value"
-      coefficients$features <- rownames(coefficients)
+      # coefficients <- data.frame(unlist(coef(model$finalModel, model$bestTune$lambda)))
+      # colnames(coefficients) <- "value"
+      # coefficients$features <- rownames(coefficients)
+      # rownames(coefficients) <- NULL
+      # coefficients <- subset(coefficients,coefficients$features != "(Intercept)")
+      coefficients <- data.frame(varImp(model,scale = TRUE)$importance)
+      coefficients$features <- as.character(rownames(coefficients))
       rownames(coefficients) <- NULL
-      coefficients <- subset(coefficients,coefficients$features != "(Intercept)")
+      coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
+      coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
+      coefficients <- subset(coefficients,coefficients$Overall > 0)
       coefficients$classifier <- classifier
       coefficients$phenx <- aoi
+
+      test.miss <- setdiff(coefficients$features,test_feats)
 
       ###calibration
       cali <- caliber(datval = dat.test,model=model,label.col = which( colnames(dat.test)=="label" ))
