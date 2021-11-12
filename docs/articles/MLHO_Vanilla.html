@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PASC-analysis • mlho</title>
+<title>MLHO Vanilla • mlho</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="PASC-analysis">
+<script src="../pkgdown.js"></script><meta property="og:title" content="MLHO Vanilla">
 <meta property="og:description" content="mlho">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -82,14 +82,15 @@
 
       
 
-      </header><script src="PASC-analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="MLHO_Vanilla_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>PASC-analysis</h1>
+      <h1 data-toc-skip>MLHO Vanilla</h1>
+                        <h4 class="author">Hossein Estiri</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/hestiri/mlho/blob/master/vignettes/PASC-analysis.Rmd"><code>vignettes/PASC-analysis.Rmd</code></a></small>
-      <div class="hidden name"><code>PASC-analysis.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/hestiri/mlho/blob/master/vignettes/MLHO_Vanilla.Rmd"><code>vignettes/MLHO_Vanilla.Rmd</code></a></small>
+      <div class="hidden name"><code>MLHO_Vanilla.Rmd</code></div>
 
     </div>
 
@@ -97,27 +98,39 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span></code></pre></div>
-<div id="how-to-create-the-5-post-acute-sequelae-of-sars-cov-2-infection-pasc" class="section level2">
+<div id="mlho-vanilla-implementation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#how-to-create-the-5-post-acute-sequelae-of-sars-cov-2-infection-pasc" class="anchor"></a>How to create the 5 post-acute sequelae of sars-cov-2 infection (pasc)</h2>
-<p>First thing is to load the 2.1 data plus the ICD-10-phecode mapping file that comes with the package <em>4-digit ICD-10 codes are needed for mapping</em></p>
+<a href="#mlho-vanilla-implementation" class="anchor"></a>MLHO Vanilla implementation</h2>
+<p>Here we go through the vanilla implementation of mlho using the synthetic data provided in the package.</p>
+<p>The synthetic data <code>syntheticmass</code> downloaded and prepared according to mlho input data model from <a href="https://synthea.mitre.org/downloads">SyntheticMass</a>, generated by <a href="https://synthetichealth.github.io/synthea/">SyntheaTM</a>, an open-source patient population simulation made available by <a href="https://health.mitre.org/">The MITRE Corporation</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># data(pHE_map)</span>
-<span class="co"># force(phe_map_unique)</span>
-<span class="co"># PatientObservations &lt;- read_csv(file.choose())</span>
-<span class="co"># PatientClinical &lt;- read_csv(file.choose())</span>
-<span class="co"># PatientSummary &lt;- read_csv(file.choose())</span></code></pre></div>
-<p>Then, run the function (it’ll take a few minutes depending on the size of the data)</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"syntheticmass"</span><span class="op">)</span></code></pre></div>
+<p>here’s how <code>dbmart</code> table looks:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># test_run &lt;- pasccases(PatientObservations,PatientClinical,PatientSummary,continuitydays1=90)</span></code></pre></div>
-<p>Results would be as follows:.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">)</span>
+<span class="co">#&gt;                            patient_num                        encounter_num</span>
+<span class="co">#&gt; 1 8d4c4326-e9de-4f45-9a4c-f8c36bff89ae 6aa37300-d1b4-48e7-a2f8-5e0f70f48f38</span>
+<span class="co">#&gt; 2 10339b10-3cd1-4ac3-ac13-ec26728cb592 dae2b7cb-1316-4b78-954f-fa610a6c6d0e</span>
+<span class="co">#&gt; 3 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 7ff86631-0378-4bfc-92ce-1edd697eb18e</span>
+<span class="co">#&gt; 4 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a b8f76eba-7795-4dcd-a544-f27ac2ef3d46</span>
+<span class="co">#&gt; 5 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 640837d9-845a-433c-9fad-47426664a69d</span>
+<span class="co">#&gt; 6 f5dcd418-09fe-4a2f-baa0-3da800bd8c3a 1923c698-accd-4d70-ba09-e1938f6e96d1</span>
+<span class="co">#&gt;       phenx                             DESCRIPTION          start_date</span>
+<span class="co">#&gt; 1 169553002 Insertion of subcutaneous contraceptive 2011-04-30 00:26:23</span>
+<span class="co">#&gt; 2 430193006   Medication Reconciliation (procedure) 2010-07-27 12:58:08</span>
+<span class="co">#&gt; 3 430193006   Medication Reconciliation (procedure) 2010-11-20 03:04:34</span>
+<span class="co">#&gt; 4 117015009              Throat culture (procedure) 2011-02-07 03:04:34</span>
+<span class="co">#&gt; 5 117015009              Throat culture (procedure) 2011-04-19 03:04:34</span>
+<span class="co">#&gt; 6 430193006   Medication Reconciliation (procedure) 2011-11-26 03:04:34</span></code></pre></div>
+<p>our demographic table contains: patient_num, white, black, hispanic, sex_cd, which we store under <code>dems.names</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># test_run$analysis1plot ##case 1 bubble chart</span>
-<span class="co"># test_run$analysis2plot</span>
-<span class="co"># test_run$analysis3plot</span>
-<span class="co"># test_run$analysis4plot</span>
-<span class="co"># case5_pre &lt;- test_run$analysis5_pre</span>
-<span class="co"># case5_preduri &lt;- test_run$analysis5_preduri</span></code></pre></div>
+<code class="sourceCode R"><span class="va">dems.names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dems</span><span class="op">)</span></code></pre></div>
+<div id="msmr-lite" class="section level3">
+<h3 class="hasAnchor">
+<a href="#msmr-lite" class="anchor"></a>MSMR lite</h3>
+<p>from here, we will split the data into a train and a test set and apply <code>MSMR.lite</code> to the training data</p>
+</div>
 </div>
   </div>
 

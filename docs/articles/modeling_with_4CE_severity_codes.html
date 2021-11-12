@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -54,6 +54,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/MLHO_Vanilla.html">MLHO Vanilla</a>
+    </li>
+    <li>
       <a href="../articles/PASC-analysis.html">PASC-analysis</a>
     </li>
     <li>
@@ -65,7 +68,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/hestiri/mlho/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -93,8 +96,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span></code></pre></div>
 <div id="step-0-data-model-if-you-have-2-1-data-extracts-skip-to-step-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-0-data-model-if-you-have-2-1-data-extracts-skip-to-step-1" class="anchor"></a>Step 0: Data model (if you have 2.1 data extracts, skip to step 1)</h2>
@@ -129,11 +132,11 @@
 </tr>
 </tbody></table>
 <p>Below is an example SQL code pulled through RODBC</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># dbmart &lt;- sqlQuery(odbc,paste0("select f.patient_num, f.encounter_num, f.start_date, c.concept_cd from COVID19_Mart.RPDR.OBSERVATION_FACT_RPDR f </span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># dbmart &lt;- sqlQuery(odbc,paste0("select f.patient_num, f.encounter_num, f.start_date, c.concept_cd from COVID19_Mart.RPDR.OBSERVATION_FACT_RPDR f </span>
 <span class="co">#                                   inner join COVID19_Mart.RPDR.VISIT_DIMENSION v on f.patient_num = v.patient_num and f.encounter_num = v.encounter_num</span>
 <span class="co">#                                   inner join COVID19_Mart.RPDR.CONCEPT_DIMENSION c on f.concept_cd=c.concept_cd</span>
-<span class="co">#                                   where f.patient_num in ('",paste(dems$patient_num,collapse = "','"),"')"))</span></pre></div>
+<span class="co">#                                   where f.patient_num in ('",paste(dems$patient_num,collapse = "','"),"')"))</span></code></pre></div>
 <div id="data-prep-and-modeling-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data-prep-and-modeling-" class="anchor"></a>data prep and modeling.<br>
@@ -141,25 +144,25 @@
 <p>step 1- load the dems and datamart tables<br>
 step 2- here we limit the dbmart concepts to 4CE severity codes. You can use a table with severity codes to subset dbmart.<br>
 step 3- now that your data is ready, get a list of the patient numbers in your tables to use in the datebuff function.<br></p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
-<span class="co">#dbmart &lt;- datebuff(data=dbmart,demographics=dems,eve="hospitallization_date",use="after",patients=uniqpats)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
+<span class="co">#dbmart &lt;- datebuff(data=dbmart,demographics=dems,eve="hospitallization_date",use="after",patients=uniqpats)</span></code></pre></div>
 </div>
 </div>
 <div id="step-1-load-and-prepare-phase-2-1-data-if-you-did-step-0-skip-to-step-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-1-load-and-prepare-phase-2-1-data-if-you-did-step-0-skip-to-step-2" class="anchor"></a>Step 1: Load and prepare Phase 2.1 data (if you did Step 0, skip to step 2)</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
 <span class="co">#PatientMapping &lt;- read.csv(file.choose()) ## this will open a window to select the .csv file</span>
 <span class="co">#PatientObservations &lt;- read.csv(file.choose())</span>
 <span class="co">#PatientClinicalCourse &lt;- read.csv(file.choose())</span>
 <span class="co">#PatientSummary &lt;- read.csv(file.choose())</span>
 
-<span class="co">#severcode &lt;- read.csv(file.choose()) ##list of severe codes</span></pre></div>
+<span class="co">#severcode &lt;- read.csv(file.choose()) ##list of severe codes</span></code></pre></div>
 <p>###extract MLHO tables from Phase 2.1 tables.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
  <span class="co"># labeldt &lt;- PatientSummary %&gt;% dplyr::select(patient_num,label=severe) %&gt;% mutate(label=factor(label))</span>
  
  <span class="co">#dbmart &lt;- PatientObservations %&gt;% </span>
@@ -170,22 +173,22 @@ step 3- now that your data is ready, get a list of the patient numbers in your t
 <span class="co">#dems&lt;-as.data.frame(model.matrix(~ . + 0, data=PatientSummary[,c(1,10,11,12)], contrasts.arg = lapply(PatientSummary[,c(10,11,12)],</span>
 <span class="co">#contrasts, contrasts=FALSE)))</span>
 
-<span class="co">#dems$sexMale &lt;- NULL</span></pre></div>
+<span class="co">#dems$sexMale &lt;- NULL</span></code></pre></div>
 </div>
 <div id="step-2-implementation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-2-implementation" class="anchor"></a>Step 2: Implementation</h2>
 <p>Now we update the list of unique patients.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
-<span class="co">#uniqpats &lt;- c(as.character(unique(dbmart$patient_num)))</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
+<span class="co">#uniqpats &lt;- c(as.character(unique(dbmart$patient_num)))</span></code></pre></div>
 <p>step 4- we create a wide table for analysis using the <code>wideout</code> function</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
-<span class="co">#dbmart.wide &lt;- wideout(data=dbmart,patients=uniqpats)</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
+<span class="co">#dbmart.wide &lt;- wideout(data=dbmart,patients=uniqpats)</span></code></pre></div>
 <p>step 5- the ML part! the following function will do an iterative run of the GLM boost and stores the results in the <code>results</code> directory.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co">#uncomment the following line to execute</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#uncomment the following line to execute</span>
 <span class="co"># learn(data= dbmart.wide,</span>
 <span class="co">#       demographics=dems,</span>
 <span class="co">#       augment=FALSE,</span>
@@ -193,7 +196,7 @@ step 3- now that your data is ready, get a list of the patient numbers in your t
 <span class="co">#       save.model=FALSE,</span>
 <span class="co">#       note="mlho_terst_run",</span>
 <span class="co">#       aoi="Severity",</span>
-<span class="co">#       multicore=TRUE)</span></pre></div>
+<span class="co">#       multicore=TRUE)</span></code></pre></div>
 <div id="next-we-will-visualize-the-results-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#next-we-will-visualize-the-results-" class="anchor"></a>Next, we will visualize the results.</h3>
