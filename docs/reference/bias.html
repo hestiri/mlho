@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>wideout — wideout • mlho</title>
+<title>Bias evaluation metrics — bias • mlho</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="wideout — wideout" />
-<meta property="og:description" content="wideout" />
+<meta property="og:title" content="Bias evaluation metrics — bias" />
+<meta property="og:description" content="Bias evaluation metrics" />
 
 
 
@@ -126,35 +126,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>wideout</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/wideout.R'><code>R/wideout.R</code></a></small>
-    <div class="hidden name"><code>wideout.Rd</code></div>
+    <h1>Bias evaluation metrics</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/bias.R'><code>R/bias.R</code></a></small>
+    <div class="hidden name"><code>bias.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>wideout</p>
+    <p>Bias evaluation metrics</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wideout</span><span class='op'>(</span><span class='va'>data</span>, binarize <span class='op'>=</span> <span class='cn'>FALSE</span>, sparsity <span class='op'>=</span> <span class='cn'>NA</span>, <span class='va'>patients</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>bias</span><span class='op'>(</span>
+  group <span class='op'>=</span> <span class='st'>"all"</span>,
+  month <span class='op'>=</span> <span class='st'>"all"</span>,
+  <span class='va'>err</span>,
+  <span class='va'>model.name</span>,
+  <span class='va'>keys</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  calibrate <span class='op'>=</span> <span class='st'>"RAW"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>the dbmart</p></td>
+      <th>group</th>
+      <td><p>#demographic or patient groups, defaults at all</p></td>
     </tr>
     <tr>
-      <th>binarize</th>
-      <td><p>if you want to use the features as binary, set it to TRUE -- default is FALSE</p></td>
+      <th>month</th>
+      <td><p>#temporal segmentation of the data, defaults at all -- i.e., no time stamps</p></td>
     </tr>
     <tr>
-      <th>sparsity</th>
-      <td><p>if the first step of MSMR, set a threshold between 0 and 1 -- 1 is 100 percent!</p></td>
+      <th>err</th>
+      <td><p>##the error file generated from mlho learn</p></td>
     </tr>
     <tr>
-      <th>patients</th>
-      <td></td>
+      <th>model.name</th>
+      <td><p>##name of the model</p></td>
+    </tr>
+    <tr>
+      <th>keys</th>
+      <td><p>##phenotype and model information for merging extracted from err</p></td>
+    </tr>
+    <tr>
+      <th>plot</th>
+      <td><p>##wanna plot out reliability diagrams?</p></td>
+    </tr>
+    <tr>
+      <th>calibrate</th>
+      <td><p>##wanna calibrate the computed probabilities?</p></td>
     </tr>
     </table>
 

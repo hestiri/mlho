@@ -2,7 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  MLHO_Vanilla: MLHO_Vanilla.html
   PASC-analysis: PASC-analysis.html
   modeling_with_4CE_severity_codes: modeling_with_4CE_severity_codes.html
-last_built: 2021-05-21T16:04Z
+last_built: 2021-11-12T16:22Z
 

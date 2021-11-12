@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>wideout — wideout • mlho</title>
+<title>MSMR lite — MSMSR.lite • mlho</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="wideout — wideout" />
-<meta property="og:description" content="wideout" />
+<meta property="og:title" content="MSMR lite — MSMSR.lite" />
+<meta property="og:description" content="MSMR lite" />
 
 
 
@@ -126,35 +126,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>wideout</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/wideout.R'><code>R/wideout.R</code></a></small>
-    <div class="hidden name"><code>wideout.Rd</code></div>
+    <h1>MSMR lite</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/MSMR.lite.R'><code>R/MSMR.lite.R</code></a></small>
+    <div class="hidden name"><code>MSMSR.lite.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>wideout</p>
+    <p>MSMR lite</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wideout</span><span class='op'>(</span><span class='va'>data</span>, binarize <span class='op'>=</span> <span class='cn'>FALSE</span>, sparsity <span class='op'>=</span> <span class='cn'>NA</span>, <span class='va'>patients</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>MSMSR.lite</span><span class='op'>(</span>
+  <span class='va'>MLHO.dat</span>,
+  <span class='va'>labels</span>,
+  binarize <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sparsity <span class='op'>=</span> <span class='cn'>NA</span>,
+  jmi <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  topn <span class='op'>=</span> <span class='fl'>200</span>,
+  <span class='va'>patients</span>,
+  multicore <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>the dbmart</p></td>
+      <th>MLHO.dat</th>
+      <td><p>your dbmart goes here</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p>your labeldt goes here</p></td>
     </tr>
     <tr>
       <th>binarize</th>
-      <td><p>if you want to use the features as binary, set it to TRUE -- default is FALSE</p></td>
+      <td><p>if you want the outcome to be binary</p></td>
     </tr>
     <tr>
       <th>sparsity</th>
-      <td><p>if the first step of MSMR, set a threshold between 0 and 1 -- 1 is 100 percent!</p></td>
+      <td><p>if you want to apply sparsity</p></td>
+    </tr>
+    <tr>
+      <th>jmi</th>
+      <td><p>if you want to do jmi</p></td>
+    </tr>
+    <tr>
+      <th>topn</th>
+      <td><p>the number of features to be selected</p></td>
     </tr>
     <tr>
       <th>patients</th>
-      <td></td>
+      <td><p>vector of patients</p></td>
+    </tr>
+    <tr>
+      <th>multicore</th>
+      <td><p>if you want to parallelize the jmi</p></td>
     </tr>
     </table>
 

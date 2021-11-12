@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>wideout — wideout • mlho</title>
+<title>the MLHO ML training and testing — mlearn • mlho</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="wideout — wideout" />
-<meta property="og:description" content="wideout" />
+<meta property="og:title" content="the MLHO ML training and testing — mlearn" />
+<meta property="og:description" content="the MLHO ML training and testing" />
 
 
 
@@ -126,35 +126,75 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>wideout</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/wideout.R'><code>R/wideout.R</code></a></small>
-    <div class="hidden name"><code>wideout.Rd</code></div>
+    <h1>the MLHO ML training and testing</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hestiri/mlho/blob/master/R/mlearn.R'><code>R/mlearn.R</code></a></small>
+    <div class="hidden name"><code>mlearn.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>wideout</p>
+    <p>the MLHO ML training and testing</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wideout</span><span class='op'>(</span><span class='va'>data</span>, binarize <span class='op'>=</span> <span class='cn'>FALSE</span>, sparsity <span class='op'>=</span> <span class='cn'>NA</span>, <span class='va'>patients</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mlearn</span><span class='op'>(</span>
+  <span class='va'>dat.train</span>,
+  <span class='va'>dat.test</span>,
+  dems <span class='op'>=</span> <span class='cn'>NULL</span>,
+  save.model <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  classifier <span class='op'>=</span> <span class='st'>"glmboost"</span>,
+  note <span class='op'>=</span> <span class='st'>"mlho_terst_run"</span>,
+  cv <span class='op'>=</span> <span class='st'>"cv"</span>,
+  nfold <span class='op'>=</span> <span class='fl'>5</span>,
+  aoi <span class='op'>=</span> <span class='st'>"label"</span>,
+  multicore <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  preProc <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>the dbmart</p></td>
+      <th>dat.train</th>
+      <td><p>training data</p></td>
     </tr>
     <tr>
-      <th>binarize</th>
-      <td><p>if you want to use the features as binary, set it to TRUE -- default is FALSE</p></td>
+      <th>dat.test</th>
+      <td><p>testing data</p></td>
     </tr>
     <tr>
-      <th>sparsity</th>
-      <td><p>if the first step of MSMR, set a threshold between 0 and 1 -- 1 is 100 percent!</p></td>
+      <th>dems</th>
+      <td><p>demographic variables</p></td>
     </tr>
     <tr>
-      <th>patients</th>
-      <td></td>
+      <th>save.model</th>
+      <td><p>do you want to save the model?</p></td>
+    </tr>
+    <tr>
+      <th>classifier</th>
+      <td><p>the classification algorithm</p></td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td><p>add a descriptive word about your modeling</p></td>
+    </tr>
+    <tr>
+      <th>cv</th>
+      <td><p>cross validatio method</p></td>
+    </tr>
+    <tr>
+      <th>nfold</th>
+      <td><p>nfold cross validation folds</p></td>
+    </tr>
+    <tr>
+      <th>aoi</th>
+      <td><p>outcome of interest</p></td>
+    </tr>
+    <tr>
+      <th>multicore</th>
+      <td><p>do you want to parallelize the process?</p></td>
+    </tr>
+    <tr>
+      <th>preProc</th>
+      <td><p>preprocessig on the train data or not</p></td>
     </tr>
     </table>
 
