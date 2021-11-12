@@ -103,7 +103,7 @@ model.test <- mlearn(dat.train,
                    dat.test,
                    dems=dems,
                    save.model=FALSE,
-                   classifier="glmboost",
+                   classifier="gbm",
                    note="mlho_terst_run",
                    cv="cv",
                    nfold=5,
@@ -114,7 +114,7 @@ model.test <- mlearn(dat.train,
 try `?mlho::mlearn` to learn more about `mlearn` parameters. 
 
 
-you can select a variety of models. For binray classification tasks, chose from:glmboost,ORFlog, RRF,gbm,bayesglm,regLogistic,xgbDART,regLogistic, glmnet, bayesglm, nb, svmRadialWeights,avNNet,and ordinalRF. see the list and description of all available [models](https://rdrr.io/cran/caret/man/models.html)
+you can select a variety of models. For binray classification tasks, chose from:ORFlog, RRF,gbm,bayesglm,regLogistic,xgbDART,regLogistic, glmnet, bayesglm, nb, svmRadialWeights,avNNet,and ordinalRF. see the list and description of all available [models](https://rdrr.io/cran/caret/man/models.html)
 
 
 ## `mlearn` outputs

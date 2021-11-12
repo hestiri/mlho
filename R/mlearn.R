@@ -96,7 +96,7 @@ mlearn <- function(dat.train,
       coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
       coefficients <- subset(coefficients,coefficients$Overall > 0)
       coefficients$classifier <- classifier
-      coefficients$phenx <- aoi
+      coefficients$aoi <- aoi
 
       test.miss <- setdiff(coefficients$features,test_feats)
 
