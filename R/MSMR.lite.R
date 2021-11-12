@@ -23,12 +23,13 @@ MSMSR.lite <- function(MLHO.dat,
                        patients,
                        multicore=TRUE)
 {
-  print("step - 1: sparsity screening!")
+
   require("plyr");require("DT")
 
   ## aggregating by unique patients
   MLHO.dat.agg <- plyr::ddply(MLHO.dat, ~ phenx,summarise,distinct_patients=length(unique(patient_num)))
   if(!is.na(sparsity)){
+    print("step - 1: sparsity screening!")
     ##remove low-prevalence features
     avrs <- c(as.character(subset(MLHO.dat.agg$phenx,MLHO.dat.agg$distinct_patients > round(length(patients)*sparsity))))
     MLHO.dat <- subset(MLHO.dat,MLHO.dat$phenx %in% avrs)
