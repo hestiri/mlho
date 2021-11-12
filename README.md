@@ -49,3 +49,5 @@ model, for instance, this column is the equivalent of `concept_cd`.
 | :----------- | :-------- | :-------- | :-------- |
 | patient\_num | age       | gender    | …         |
 | character    | character | character | character |
+
+see the articles on how to use the MLHO package [here](www.google.com)

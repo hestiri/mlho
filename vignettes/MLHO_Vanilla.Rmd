@@ -98,7 +98,7 @@ Here notice that we only used `MSMR.lite` to generate the wide table that matche
 
 ##Modeling
 we will use the `mlearn` function to do the modeling, which includes training the model and testing it on the test set.
-```{r}
+```{r, warning=FALSE}
 model.test <- mlearn(dat.train,
                    dat.test,
                    dems=dems,
@@ -111,5 +111,29 @@ model.test <- mlearn(dat.train,
                    multicore=TRUE)
 ```
 
-See help (`?mlho::mlearn`) for `mlearn` parameters. 
+use `?mlho::mlearn` for `mlearn` parameters. 
+
+
+*you can select a variety of models. For binray classification tasks, chose from:
+glmboost,ORFlog, RRF,gbm,bayesglm,regLogistic, xgbDART,regLogistic, glmnet, bayesglm, nb, svmRadialWeights,avNNet, ordinalRF -- see the list and description of all available [models](https://rdrr.io/cran/caret/man/models.html)*
+
+## `mlearn`outputs
+outputs of `mlearn` include:
+
+* model performance metrics: `model.test$ROC`
+    + model.test' AUROC is `r model.test$ROC$roc`
+* final important features, which can be pulled and save from `model.test$coefficients`
+* absolute errors for each patients using `model.test$AE`
+* missing important features `model.test$missing.features`
+
+
+For instance, only the following `r nrow(model.test$coefficients)` features were used in phenotyping the `prediabetes`:
+
+
+`r model.test$coefficients`
+
+### *we recommend iterating the training and testing and storing the coefficients in a directory.* 
+
+
+##visualizations to follow!
 
