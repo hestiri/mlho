@@ -31,7 +31,7 @@ The synthetic data `syntheticmass` downloaded and prepared according to mlho inp
 library(mlho)
 data("syntheticmass")
 ```
-here's how `dbmart` table looks:
+here's how `dbmart` table looks (there's an extra column that is the translation of the `phenx` concepts):
 ```{r}
 head(dbmart)
 ```
