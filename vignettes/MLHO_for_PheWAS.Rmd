@@ -46,7 +46,7 @@ To identify features that are useful for your prediction task, you can iterative
 
 
 **See the help to learn more about parameters.**
-```{r,echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE}
+```{r, warning=FALSE}
 data.table::setDT(dbmart)
 dbmart[,row := .I]
 dbmart$value.var <- 1
@@ -66,7 +66,7 @@ mlho.features <- mlho.it(dbmart,
 
 here are your features and their ORs:
 ```{r}
-datatable(dplyr::select(mlho.features,DESCRIPTION,OR), options = list(pageLength = 5), filter = 'bottom')
+datatable(dplyr::select(mlho.features,DESCRIPTION), options = list(pageLength = 5), filter = 'bottom')
 
 ```
 
@@ -108,4 +108,27 @@ datatable(GLM.output, options = list(pageLength = 5), filter = 'bottom')
 
 ```
 
+You can see that off all the `r length(mlho.features)` features that MLHO identified with confidence score >= 80, a GLM model found `r nrow(subset(GLM.output,GLM.output$P <= 0.05))`! 
 
+Now let's visualize the mean coefficients.
+```{r,fig.align='center',fig.width=7,fig.height=7}
+
+dbmart.concepts <- dbmart[!duplicated(paste0(dbmart$phenx)), c("phenx","DESCRIPTION")]
+GLM.output <- data.frame(merge(GLM.output,dbmart.concepts,by.x="features",by.y ="phenx",all.x=T))
+GLM.output$DESCRIPTION <- ifelse(is.na(GLM.output$DESCRIPTION),GLM.output$features,GLM.output$DESCRIPTION)
+
+(plot<- ggplot(GLM.output) +
+    geom_segment(
+      aes(y = 1,
+          x = reorder(DESCRIPTION,OR),
+          yend = OR,
+          xend = DESCRIPTION),
+      size=0.5,alpha=0.5) +
+    geom_point(
+      aes(x=reorder(DESCRIPTION,OR),y=OR),
+      alpha=0.5,size=2,color="red") +
+    theme_minimal()+
+    scale_y_continuous(limits=c(0,10))+
+   coord_flip()+
+    labs(y="Odds Ratio",x=""))
+```
