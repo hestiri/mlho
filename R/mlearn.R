@@ -34,6 +34,7 @@ mlearn <- function(dat.train,
     cl <- makeCluster(cores[1]-2)
     registerDoParallel(cl)}
 
+  if (!is.null(dat.test)) {
   if(!is.null(dems)){
     dat.train <- merge(dat.train,dems, by="patient_num")
     dat.test <- merge(dat.test,dems, by="patient_num")
@@ -65,13 +66,20 @@ mlearn <- function(dat.train,
 
 
 
-      if(preProc == TRUE) {preProc=c("center", "scale")}
+      if(preProc == TRUE) {preProc=c("center", "scale")
 
       model <- caret::train(as.formula(paste(goldstandard, "~ .")),
                             data=dat.train
                             , trControl=train_control
                             , method = classifier
-                            ,preProc)
+                            ,preProc)}
+
+      if(preProc == FALSE) {
+
+        model <- caret::train(as.formula(paste(goldstandard, "~ .")),
+                              data=dat.train
+                              , trControl=train_control
+                              , method = classifier)}
 
       test_feats <- c(as.character(names(dat.test)))
       test.miss <- setdiff(names(dat.train),names(dat.test))
@@ -136,4 +144,63 @@ mlearn <- function(dat.train,
     AE=err,
     missing.features=test.miss
   ))
+  }
+
+
+if (is.null(dat.test)) {
+  if(!is.null(dems)){
+    dat.train <- merge(dat.train,dems, by="patient_num")
+  }
+
+
+  #modeling
+  print("the modeling!")
+  dat.train$label <- ifelse(dat.train$label ==1 , "Y","N")
+
+  dat.train$label <- as.factor(dat.train$label)
+
+
+  goldstandard <- "label"
+  dat.train$patient_num <- NULL
+
+  # set.seed(1395)
+  Sys.setenv(R_MAX_NUM_DLLS = 999)
+
+  options(java.parameters = "-Xmx8048m")
+
+  logitMod <- glm(as.formula(paste(goldstandard, "~ .")),
+                  data=dat.train, family=binomial(link="logit"))
+
+
+  summary(logitMod)
+  # car::vif(logitMod)##multicolinearity is fine if vif values are below 4
+
+  # logitMod$coefficients
+  lreg.or <-exp(cbind(OR = coef(logitMod), confint(logitMod))) ##CIs using profiled log-likelihood
+  output <- data.frame(round(lreg.or, digits=4))
+  output$features <- rownames(output)
+  rownames(output) <- NULL
+  ps <- data.frame(
+    round(
+      coef(summary(logitMod))[,4],4))#P(Wald's test)
+  ps$features <- rownames(ps)
+  rownames(ps) <- NULL
+  output <- merge(output,ps,by="features")
+  output$features <- sub('`', '', output$features, fixed = TRUE)
+  output$features <- sub('`', '', output$features, fixed = TRUE)
+  output <- subset(output,output$features != "(Intercept)")
+  colnames(output) <- c("features","OR","low","high","P (Wald's test)")
+  output$classifier <- "GLM"
+  output$aoi <- aoi
+
+  if(save.model==TRUE){
+    ##save the model
+    saveRDS(model, paste0(getwd(),"/results/model_",classifier,"_",note,"_",aoi,".rds"))
+  }
+
+
+
+
+  return(features=output)
+}
 }

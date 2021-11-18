@@ -25,7 +25,7 @@ Install and load the required packages:
 ```{r}
 if(!require(pacman)) install.packages("pacman")
 
-pacman::p_load(data.table, devtools, backports, Hmisc, tidyr,dplyr,ggplot2,plyr,scales,readr,
+pacman::p_load(data.table, devtools, backports, Hmisc, tidyr,dplyr,ggplot2,plyr,scales,readr,Rmisc,
                httr, DT, lubridate, tidyverse,reshape2,foreach,doParallel,caret,gbm,lubridate,praznik)
 ```
 
@@ -69,3 +69,43 @@ here are your features and their ORs:
 datatable(dplyr::select(mlho.features,DESCRIPTION,OR), options = list(pageLength = 5), filter = 'bottom')
 
 ```
+
+
+
+##Computing MLHO confidence scores (CS)
+
+As an alternative to p-value adjustment, we have developed a method for computing confidence scores for features that MLHO identifies, using mlho.features file saved above. 
+```{r,warning=FALSE}
+mlho.scores <- mlho.cs(mlho.features)
+```
+
+the confidence score (cs) is based on the number of iterations and considers consensus in a feature identified as positive/negative in each iteration. For our [PASC article](https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-021-02115-0), we used features with `cs>80`. For this demonstration, let's do `cs >= 80`. We will use these features to run a GLM model without any regularization to obtain multivariate coefficients.
+
+```{r}
+mlho.features <- c(as.character(mlho.scores$features,mlho.scores$cs >= 80))
+```
+
+we got `r length(mlho.features)` features for our multivariate GLM model -- down from `r length(unique(dbmart$phenx))`.
+
+Look at [MLHO Vanilla](https://hestiri.github.io/mlho/articles/MLHO_Vanilla.html) implementation article to refresh these next steps. For the purpose of extracting the GLM coefficients, we implement `mlearn` slightly differently, where there's no test set and the model is developed on the entire population. To do this we set `dat.train` to `NULL`.  
+
+```{r,warning=FALSE}
+dbmart <- subset(dbmart,dbmart$phenx %in% mlho.features)
+setDT(dbmart)
+dbmart[,row := .I]
+dbmart$value.var <- 1
+uniqpats <- c(as.character(unique(dbmart$patient_num)))
+GLM.data <- MSMSR.lite(MLHO.dat=dbmart,patients = uniqpats,sparsity=NA,jmi = FALSE,labels = labeldt)
+GLM.output <- mlearn(dat.train=GLM.data,
+                   dat.test=NULL,
+                   dems=dems,
+                   save.model=FALSE,
+                   classifier="GLM",
+                   note="extracting_coefficients",
+                   aoi="prediabetes",
+                   multicore=TRUE)
+datatable(GLM.output, options = list(pageLength = 5), filter = 'bottom')
+
+```
+
+
