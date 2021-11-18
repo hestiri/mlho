@@ -189,7 +189,7 @@ if (is.null(dat.test)) {
   output$features <- sub('`', '', output$features, fixed = TRUE)
   output$features <- sub('`', '', output$features, fixed = TRUE)
   output <- subset(output,output$features != "(Intercept)")
-  colnames(output) <- c("features","OR","low","high","P (Wald's test)")
+  colnames(output) <- c("features","OR","low","high","P")
   output$classifier <- "GLM"
   output$aoi <- aoi
 
