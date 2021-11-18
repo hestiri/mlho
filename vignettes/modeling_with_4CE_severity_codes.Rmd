@@ -1,9 +1,9 @@
 ---
-title: "modeling_with_4CE_severity_codes"
+title: "modeling with 4CE severity codes"
 author: Hossein Estiri
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{modeling_with_4CE_severity_codes}
+  %\VignetteIndexEntry{modeling with 4CE severity codes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -1,6 +1,7 @@
 ---
 title: "MLHO Vanilla"
 author: Hossein Estiri
+date: Nov. 5th 2021
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{MLHO Vanilla}
@@ -20,7 +21,13 @@ knitr::opts_chunk$set(
 library(mlho)
 ```
 
+Install and load the required packages:
+```{r}
+if(!require(pacman)) install.packages("pacman")
 
+pacman::p_load(data.table, devtools, backports, Hmisc, tidyr,dplyr,ggplot2,plyr,scales,readr,
+               httr, DT, lubridate, tidyverse,reshape2,foreach,doParallel,caret,gbm,lubridate,praznik)
+```
 
 ## MLHO Vanilla implementation
 
@@ -37,14 +44,6 @@ head(dbmart)
 ```
 our demographic table contains: `r colnames(dems)`.
 
-
-Install and load the required packages:
-```{r}
-if(!require(pacman)) install.packages("pacman")
-
-pacman::p_load(data.table, devtools, backports, Hmisc, tidyr,dplyr,ggplot2,plyr,scales,readr,
-               httr, DT, lubridate, tidyverse,reshape2,foreach,doParallel,caret,gbm,lubridate,praznik)
-```
 
 
 ##split data into train-test
@@ -122,20 +121,59 @@ outputs of `mlearn` include:
   
 * model performance metrics: `model.test$ROC`
   + in model.test AUROC is `r model.test$ROC$roc`
-* final important features, which can be pulled and save from `model.test$coefficients`
+* final important features, which can be pulled and save from `model.test$features`
 * absolute errors for each patients using `model.test$AE`
 * missing important features `model.test$missing.features`
 
 
-For instance, only the following `r nrow(model.test$coefficients)` features were used in phenotyping the `prediabetes`:
+For instance, only the following `r nrow(model.test$features)` features were used in phenotyping the `prediabetes`:
 
 ```{r}
-model.test$coefficients
+model.test$features
 ```
 
-### *we recommend iterating the training and testing and storing the coefficients in a directory.* 
+
+*we recommend iterating the training and testing and storing the coefficients in a directory.*
 
 
-##visualizations to follow!
+## Visualizing the outputs
+Here we create a plot of the feature importance scores for each of the top (here we have `r nrow(model.test$coefficients)`) predictors identified by MLHO.
+
+To do so, let's map the concept codes to their "English" translation. *That's why we kept that 4th column called `description` in `dbmart`.*
+```{r}
+dbmart.concepts <- dbmart[!duplicated(paste0(dbmart$phenx)), c("phenx","DESCRIPTION")]
+mlho.features <- data.frame(merge(model.test$features,dbmart.concepts,by.x="features",by.y = "phenx"))
+datatable(dplyr::select(mlho.features,features,DESCRIPTION,`Feature importance`=Overall), options = list(pageLength = 5), filter = 'bottom')
+```
+
+now visualizing feature importance
+```{r,fig.align='center',fig.width=7,fig.height=7}
+(plot<- ggplot(mlho.features) +
+    geom_segment(
+      aes(y = 0,
+          x = reorder(DESCRIPTION,Overall),
+          yend = Overall,
+          xend = DESCRIPTION),
+      size=0.5,alpha=0.5) +
+    geom_point(
+      aes(x=reorder(DESCRIPTION,Overall),y=Overall),
+      alpha=0.5,size=2,color="red") +
+    theme_minimal()+
+   coord_flip()+
+    labs(y="Feature importance",x=""))
+```
+
+
+
+
+## Notes for more complex implementation
+As we recommended above, it's best to at least iterate the training process 5 times, in which case you'll have 5 files containing the important features from MLHO. We do this regularly. If you do so, you can compute the mean/median values for each feature.
+
+
+Now if you want to get the regression coefficients and compute Odds Ratios (ORs), you can then select the top feature that were selected most frequently in MLHO iterations to run a regression model (pass `glm` to `mlearn`) and extract regression coefficients to then transform to ORs. 
+
+
+
+
 
 

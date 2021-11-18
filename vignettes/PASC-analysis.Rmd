@@ -1,8 +1,8 @@
 ---
-title: "PASC-analysis"
+title: "PASC analysis"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PASC-analysis}
+  %\VignetteIndexEntry{PASC analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

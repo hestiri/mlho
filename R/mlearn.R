@@ -41,7 +41,7 @@ mlearn <- function(dat.train,
 
 
       #modeling
-      print("to the modeling!")
+      print("the modeling!")
       dat.train$label <- ifelse(dat.train$label ==1 , "Y","N")
       dat.test$label <- ifelse(dat.test$label ==1 , "Y","N")
 
@@ -83,12 +83,20 @@ mlearn <- function(dat.train,
       ROC$cv_roc_sd <- mean(model$results$ROCSD)
       ROC$classifier <- classifier
 
+      if(classifier=="glmboost"){
       ##coefficients
-      # coefficients <- data.frame(unlist(coef(model$finalModel, model$bestTune$lambda)))
-      # colnames(coefficients) <- "value"
-      # coefficients$features <- rownames(coefficients)
-      # rownames(coefficients) <- NULL
-      # coefficients <- subset(coefficients,coefficients$features != "(Intercept)")
+      coefficients <- data.frame(unlist(coef(model$finalModel, model$bestTune$lambda)))
+      colnames(coefficients) <- "value"
+      coefficients$features <- rownames(coefficients)
+      rownames(coefficients) <- NULL
+      coefficients <- subset(coefficients,coefficients$features != "(Intercept)")
+      coefficients$features <- sub('`\\`', '', coefficients$features, fixed = TRUE)
+      coefficients$features <- sub('\\``', '', coefficients$features, fixed = TRUE)
+      coefficients$value <- exp(coefficients$value*2)
+      coefficients$classifier <- classifier
+      coefficients$aoi <- aoi
+      }
+      if(classifier!="glmboost"){
       coefficients <- data.frame(varImp(model,scale = TRUE)$importance)
       coefficients$features <- as.character(rownames(coefficients))
       rownames(coefficients) <- NULL
@@ -97,6 +105,8 @@ mlearn <- function(dat.train,
       coefficients <- subset(coefficients,coefficients$Overall > 0)
       coefficients$classifier <- classifier
       coefficients$aoi <- aoi
+      }
+
 
       test.miss <- setdiff(coefficients$features,test_feats)
 
@@ -121,7 +131,7 @@ mlearn <- function(dat.train,
 
   return(list(
     ROC=ROC,
-    coefficients=coefficients,
+    features=coefficients,
     calibrations=cali,
     AE=err,
     missing.features=test.miss

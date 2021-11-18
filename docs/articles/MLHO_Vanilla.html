@@ -57,10 +57,13 @@
       <a href="../articles/MLHO_Vanilla.html">MLHO Vanilla</a>
     </li>
     <li>
-      <a href="../articles/PASC-analysis.html">PASC-analysis</a>
+      <a href="../articles/MLHO_for_PheWAS.html">Multivariate PheWAS with MLHO</a>
     </li>
     <li>
-      <a href="../articles/modeling_with_4CE_severity_codes.html">modeling_with_4CE_severity_codes</a>
+      <a href="../articles/PASC-analysis.html">PASC analysis</a>
+    </li>
+    <li>
+      <a href="../articles/modeling_with_4CE_severity_codes.html">modeling with 4CE severity codes</a>
     </li>
   </ul>
 </li>
@@ -82,12 +85,19 @@
 
       
 
-      </header><script src="MLHO_Vanilla_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="MLHO_Vanilla_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="MLHO_Vanilla_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="MLHO_Vanilla_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/datatables-binding-0.19/datatables.js"></script><script src="MLHO_Vanilla_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="MLHO_Vanilla_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="MLHO_Vanilla_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="MLHO_Vanilla_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="MLHO_Vanilla_files/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/selectize-0.12.0/selectize.min.js"></script><link href="MLHO_Vanilla_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>MLHO Vanilla</h1>
                         <h4 class="author">Hossein Estiri</h4>
             
+            <h4 class="date">Nov. 5th 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hestiri/mlho/blob/master/vignettes/MLHO_Vanilla.Rmd"><code>vignettes/MLHO_Vanilla.Rmd</code></a></small>
       <div class="hidden name"><code>MLHO_Vanilla.Rmd</code></div>
@@ -99,15 +109,22 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># make sure the package is installed --&gt; devtools::install_github("hestiri/mlho")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span></code></pre></div>
+<p>Install and load the required packages:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: pacman</span>
+
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">data.table</span>, <span class="va">devtools</span>, <span class="va">backports</span>, <span class="va">Hmisc</span>, <span class="va">tidyr</span>,<span class="va">dplyr</span>,<span class="va">ggplot2</span>,<span class="va">plyr</span>,<span class="va">scales</span>,<span class="va">readr</span>,
+               <span class="va">httr</span>, <span class="va">DT</span>, <span class="va">lubridate</span>, <span class="va">tidyverse</span>,<span class="va">reshape2</span>,<span class="va">foreach</span>,<span class="va">doParallel</span>,<span class="va">caret</span>,<span class="va">gbm</span>,<span class="va">lubridate</span>,<span class="va">praznik</span><span class="op">)</span></code></pre></div>
 <div id="mlho-vanilla-implementation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mlho-vanilla-implementation" class="anchor"></a>MLHO Vanilla implementation</h2>
 <p>Here we go through the vanilla implementation of MLHO using the synthetic data provided in the package.</p>
 <p>The synthetic data <code>syntheticmass</code> downloaded and prepared according to MLHO input data model from <a href="https://synthea.mitre.org/downloads">SyntheticMass</a>, generated by <a href="https://synthetichealth.github.io/synthea/">SyntheaTM</a>, an open-source patient population simulation made available by <a href="https://health.mitre.org/">The MITRE Corporation</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"syntheticmass"</span><span class="op">)</span></code></pre></div>
 <p>here’s how <code>dbmart</code> table looks (there’s an extra column that is the translation of the <code>phenx</code> concepts):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">)</span>
 <span class="co">#&gt;                            patient_num     phenx</span>
 <span class="co">#&gt; 1 8d4c4326-e9de-4f45-9a4c-f8c36bff89ae 169553002</span>
@@ -124,13 +141,6 @@
 <span class="co">#&gt; 5              Throat culture (procedure) 2011-04-19 03:04:34</span>
 <span class="co">#&gt; 6   Medication Reconciliation (procedure) 2011-11-26 03:04:34</span></code></pre></div>
 <p>our demographic table contains: patient_num, white, black, hispanic, sex_cd.</p>
-<p>Install and load the required packages:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: pacman</span>
-
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">data.table</span>, <span class="va">devtools</span>, <span class="va">backports</span>, <span class="va">Hmisc</span>, <span class="va">tidyr</span>,<span class="va">dplyr</span>,<span class="va">ggplot2</span>,<span class="va">plyr</span>,<span class="va">scales</span>,<span class="va">readr</span>,
-               <span class="va">httr</span>, <span class="va">DT</span>, <span class="va">lubridate</span>, <span class="va">tidyverse</span>,<span class="va">reshape2</span>,<span class="va">foreach</span>,<span class="va">doParallel</span>,<span class="va">caret</span>,<span class="va">gbm</span>,<span class="va">lubridate</span>,<span class="va">praznik</span><span class="op">)</span></code></pre></div>
 <p>##split data into train-test</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">uniqpats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -193,7 +203,7 @@
                    nfold<span class="op">=</span><span class="fl">5</span>,
                    aoi<span class="op">=</span><span class="st">"prediabetes"</span>,
                    multicore<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] "to the modeling!"</span>
+<span class="co">#&gt; [1] "the modeling!"</span>
 <span class="co">#&gt; Iter   TrainDeviance   ValidDeviance   StepSize   Improve</span>
 <span class="co">#&gt;      1        1.0611             nan     0.1000    0.0571</span>
 <span class="co">#&gt;      2        0.9674             nan     0.1000    0.0440</span>
@@ -243,7 +253,7 @@
 <li>in model.test AUROC is 0.9392964</li>
 </ul>
 </li>
-<li>final important features, which can be pulled and save from <code>model.test$coefficients</code>
+<li>final important features, which can be pulled and save from <code>model.test$features</code>
 </li>
 <li>absolute errors for each patients using <code>model.test$AE</code>
 </li>
@@ -252,7 +262,7 @@
 </ul>
 <p>For instance, only the following 32 features were used in phenotyping the <code>prediabetes</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model.test</span><span class="op">$</span><span class="va">coefficients</span>
+<code class="sourceCode R"><span class="va">model.test</span><span class="op">$</span><span class="va">features</span>
 <span class="co">#&gt;         Overall        features classifier         aoi</span>
 <span class="co">#&gt; 5     0.3136170          197604        gbm prediabetes</span>
 <span class="co">#&gt; 12    0.3235465          310325        gbm prediabetes</span>
@@ -286,12 +296,40 @@
 <span class="co">#&gt; 197   0.3094696       703423002        gbm prediabetes</span>
 <span class="co">#&gt; 200   0.2727734 368581000119106        gbm prediabetes</span>
 <span class="co">#&gt; 202   0.2682787           black        gbm prediabetes</span></code></pre></div>
-<div id="we-recommend-iterating-the-training-and-testing-and-storing-the-coefficients-in-a-directory-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#we-recommend-iterating-the-training-and-testing-and-storing-the-coefficients-in-a-directory-" class="anchor"></a><em>we recommend iterating the training and testing and storing the coefficients in a directory.</em>
-</h3>
-<p>##visualizations to follow!</p>
+<p><em>we recommend iterating the training and testing and storing the coefficients in a directory.</em></p>
 </div>
+<div id="visualizing-the-outputs" class="section level2">
+<h2 class="hasAnchor">
+<a href="#visualizing-the-outputs" class="anchor"></a>Visualizing the outputs</h2>
+<p>Here we create a plot of the feature importance scores for each of the top (here we have ) predictors identified by MLHO.</p>
+<p>To do so, let’s map the concept codes to their “English” translation. <em>That’s why we kept that 4th column called <code>description</code> in <code>dbmart</code>.</em></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dbmart.concepts</span> <span class="op">&lt;-</span> <span class="va">dbmart</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">phenx</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"phenx"</span>,<span class="st">"DESCRIPTION"</span><span class="op">)</span><span class="op">]</span>
+<span class="va">mlho.features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">model.test</span><span class="op">$</span><span class="va">features</span>,<span class="va">dbmart.concepts</span>,by.x<span class="op">=</span><span class="st">"features"</span>,by.y <span class="op">=</span> <span class="st">"phenx"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">datatable</span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mlho.features</span>,<span class="va">features</span>,<span class="va">DESCRIPTION</span>,`Feature importance`<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, filter <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-b208bf01a3628b27c209" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b208bf01a3628b27c209">{"x":{"filter":"bottom","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.153975180586265\" data-max=\"100\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],["104091002","117015009","14768001","169230002","171207006","19169002","197604","2001499","225158009","237602007","239873007","271737000","28163009","310325","310798","314231","368581000119106","429503","430193006","431855005","44054006","5880005","66348005","703423002","73761001","746030","76601001","79586000","860975","895994","999967"],["Hemoglobin / Hematocrit / Platelet count","Throat culture (procedure)","Peripheral blood smear interpretation","Ultrasound scan for fetal viability","Depression screening","Miscarriage in first trimester","Digoxin 0.125 MG Oral Tablet","Vitamin B 12 5 MG/ML Injectable Solution","Auscultation of the fetal heart","Metabolic syndrome X (disorder)","Osteoarthritis of knee","Anemia (disorder)","Skin test for tuberculosis","ferrous sulfate 325 MG Oral Tablet","Hydrochlorothiazide 25 MG Oral Tablet","Simvastatin 10 MG Oral Tablet","Neuropathy due to type 2 diabetes mellitus (disorder)","Hydrochlorothiazide 12.5 MG","Medication Reconciliation (procedure)","Chronic kidney disease stage 1 (disorder)","Diabetes","Physical examination of mother","Childbirth","Combined chemotherapy and radiation therapy (procedure)","Colonoscopy","Atenolol 50 MG / Chlorthalidone 25 MG Oral Tablet","Intramuscular injection","Tubal pregnancy","24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet","120 ACTUAT Fluticasone propionate 0.044 MG/ACTUAT Metered Dose Inhaler","amLODIPine 5 MG / Hydrochlorothiazide 12.5 MG / Olmesartan medoxomil 20 MG Oral Tablet"],[0.595138984458977,0.350089321967607,2.72317392702416,0.657316315359661,0.309877880198119,7.30311709726128,0.313617011216061,1.09867615065585,1.45297873238938,1.09828784895972,0.816877699645141,100,1.75569613988148,0.323546484549321,0.153975180586265,1.00378566545359,0.272773350408933,0.341562161640932,2.07303748444174,0.305124029106228,0.468012724875347,2.07572875056071,0.252944156930217,0.309469583814712,2.60820058687088,0.44118567388443,0.329456862208838,0.257458232311738,2.94036905627009,0.774085070599917,0.245666492316129]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>features<\/th>\n      <th>DESCRIPTION<\/th>\n      <th>Feature importance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>now visualizing feature importance</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">plot</span><span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mlho.features</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_segment</span><span class="op">(</span>
+      <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="fl">0</span>,
+          x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,
+          yend <span class="op">=</span> <span class="va">Overall</span>,
+          xend <span class="op">=</span> <span class="va">DESCRIPTION</span><span class="op">)</span>,
+      size<span class="op">=</span><span class="fl">0.5</span>,alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span>
+      <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,y<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>,
+      alpha<span class="op">=</span><span class="fl">0.5</span>,size<span class="op">=</span><span class="fl">2</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+   <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu">labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">"Feature importance"</span>,x<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="MLHO_Vanilla_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;"></p>
+</div>
+<div id="notes-for-more-complex-implementation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#notes-for-more-complex-implementation" class="anchor"></a>Notes for more complex implementation</h2>
+<p>As we recommended above, it’s best to at least iterate the training process 5 times, in which case you’ll have 5 files containing the important features from MLHO. We do this regularly. If you do so, you can compute the mean/median values for each feature.</p>
+<p>Now if you want to get the regression coefficients and compute Odds Ratios (ORs), you can then select the top feature that were selected most frequently in MLHO iterations to run a regression model (pass <code>glm</code> to <code>mlearn</code>) and extract regression coefficients to then transform to ORs.</p>
 </div>
   </div>
 
