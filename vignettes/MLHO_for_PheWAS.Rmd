@@ -82,7 +82,7 @@ mlho.scores <- mlho.cs(mlho.features)
 the confidence score (cs) is based on the number of iterations and considers consensus in a feature identified as positive/negative in each iteration. For our [PASC article](https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-021-02115-0), we used features with `cs>80`. For this demonstration, let's do `cs >= 80`. We will use these features to run a GLM model without any regularization to obtain multivariate coefficients.
 
 ```{r}
-mlho.features <- c(as.character(mlho.scores$features,mlho.scores$cs >= 80))
+mlho.features <- c(as.character(subset(mlho.scores$features,mlho.scores$cs >= 80)))
 ```
 
 we got `r length(mlho.features)` features for our multivariate GLM model -- down from `r length(unique(dbmart$phenx))`.

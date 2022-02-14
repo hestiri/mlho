@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mlho</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/hestiri/mlho/">
+  <a href="https://github.com/hestiri/mlho/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,21 +81,21 @@
 
       
 
-      </header><script src="MLHO_Vanilla_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="MLHO_Vanilla_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="MLHO_Vanilla_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="MLHO_Vanilla_files/datatables-binding-0.19/datatables.js"></script><script src="MLHO_Vanilla_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="MLHO_Vanilla_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="MLHO_Vanilla_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="MLHO_Vanilla_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="MLHO_Vanilla_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+      </header><script src="MLHO_Vanilla_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="MLHO_Vanilla_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/datatables-binding-0.20/datatables.js"></script><link href="MLHO_Vanilla_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="MLHO_Vanilla_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="MLHO_Vanilla_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="MLHO_Vanilla_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
 <script src="MLHO_Vanilla_files/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="MLHO_Vanilla_files/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
 <script src="MLHO_Vanilla_files/selectize-0.12.0/selectize.min.js"></script><link href="MLHO_Vanilla_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="MLHO_Vanilla_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>MLHO Vanilla</h1>
-                        <h4 class="author">Hossein Estiri</h4>
+                        <h4 data-toc-skip class="author">Hossein Estiri</h4>
             
-            <h4 class="date">Nov. 5th 2021</h4>
+            <h4 data-toc-skip class="date">Nov. 5th 2021</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/hestiri/mlho/blob/master/vignettes/MLHO_Vanilla.Rmd"><code>vignettes/MLHO_Vanilla.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/hestiri/mlho/blob/HEAD/vignettes/MLHO_Vanilla.Rmd" class="external-link"><code>vignettes/MLHO_Vanilla.Rmd</code></a></small>
       <div class="hidden name"><code>MLHO_Vanilla.Rmd</code></div>
 
     </div>
@@ -108,24 +104,24 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># make sure the package is installed --&gt; devtools::install_github("hestiri/mlho")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho">mlho</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hestiri/mlho" class="external-link">mlho</a></span><span class="op">)</span></code></pre></div>
 <p>Install and load the required packages:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman" class="external-link">pacman</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: pacman</span>
 
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">data.table</span>, <span class="va">devtools</span>, <span class="va">backports</span>, <span class="va">Hmisc</span>, <span class="va">tidyr</span>,<span class="va">dplyr</span>,<span class="va">ggplot2</span>,<span class="va">plyr</span>,<span class="va">scales</span>,<span class="va">readr</span>,
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">data.table</span>, <span class="va">devtools</span>, <span class="va">backports</span>, <span class="va">Hmisc</span>, <span class="va">tidyr</span>,<span class="va">dplyr</span>,<span class="va">ggplot2</span>,<span class="va">plyr</span>,<span class="va">scales</span>,<span class="va">readr</span>,
                <span class="va">httr</span>, <span class="va">DT</span>, <span class="va">lubridate</span>, <span class="va">tidyverse</span>,<span class="va">reshape2</span>,<span class="va">foreach</span>,<span class="va">doParallel</span>,<span class="va">caret</span>,<span class="va">gbm</span>,<span class="va">lubridate</span>,<span class="va">praznik</span><span class="op">)</span></code></pre></div>
-<div id="mlho-vanilla-implementation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mlho-vanilla-implementation" class="anchor"></a>MLHO Vanilla implementation</h2>
+<div class="section level2">
+<h2 id="mlho-vanilla-implementation">MLHO Vanilla implementation<a class="anchor" aria-label="anchor" href="#mlho-vanilla-implementation"></a>
+</h2>
 <p>Here we go through the vanilla implementation of MLHO using the synthetic data provided in the package.</p>
-<p>The synthetic data <code>syntheticmass</code> downloaded and prepared according to MLHO input data model from <a href="https://synthea.mitre.org/downloads">SyntheticMass</a>, generated by <a href="https://synthetichealth.github.io/synthea/">SyntheaTM</a>, an open-source patient population simulation made available by <a href="https://health.mitre.org/">The MITRE Corporation</a>.</p>
+<p>The synthetic data <code>syntheticmass</code> downloaded and prepared according to MLHO input data model from <a href="https://synthea.mitre.org/downloads" class="external-link">SyntheticMass</a>, generated by <a href="https://synthetichealth.github.io/synthea/" class="external-link">SyntheaTM</a>, an open-source patient population simulation made available by <a href="https://health.mitre.org/" class="external-link">The MITRE Corporation</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"syntheticmass"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"syntheticmass"</span><span class="op">)</span></code></pre></div>
 <p>here’s how <code>dbmart</code> table looks (there’s an extra column that is the translation of the <code>phenx</code> concepts):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">)</span>
 <span class="co">#&gt;                            patient_num     phenx</span>
 <span class="co">#&gt; 1 8d4c4326-e9de-4f45-9a4c-f8c36bff89ae 169553002</span>
 <span class="co">#&gt; 2 10339b10-3cd1-4ac3-ac13-ec26728cb592 430193006</span>
@@ -143,34 +139,34 @@
 <p>our demographic table contains: patient_num, white, black, hispanic, sex_cd.</p>
 <p>##split data into train-test</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">uniqpats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">uniqpats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#using a 70-30 ratio</span>
-<span class="va">test_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">uniqpats</span>,
-                   <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">.3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">uniqpats</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">test_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">uniqpats</span>,
+                   <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">.3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">uniqpats</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">test_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">labeldt</span>,<span class="va">labeldt</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"test set lables:"</span><span class="op">)</span>
+<span class="va">test_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">labeldt</span>,<span class="va">labeldt</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"test set lables:"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "test set lables:"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_labels</span><span class="op">$</span><span class="va">label</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">test_labels</span><span class="op">$</span><span class="va">label</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   0   1 </span>
 <span class="co">#&gt; 261  90</span>
-<span class="va">train_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">labeldt</span>,<span class="op">!</span><span class="op">(</span><span class="va">labeldt</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"train set lables:"</span><span class="op">)</span>
+<span class="va">train_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">labeldt</span>,<span class="op">!</span><span class="op">(</span><span class="va">labeldt</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"train set lables:"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "train set lables:"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">train_labels</span><span class="op">$</span><span class="va">label</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">train_labels</span><span class="op">$</span><span class="va">label</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   0   1 </span>
 <span class="co">#&gt; 593 227</span>
 <span class="co"># train and test sets </span>
-<span class="va">dat.train</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dbmart</span>,<span class="op">!</span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">dat.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dbmart</span>,<span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">dat.train</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">dbmart</span>,<span class="op">!</span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dat.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">dbmart</span>,<span class="va">dbmart</span><span class="op">$</span><span class="va">patient_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>now dimensionality reduction on training set ## MSMR lite from here, we will split the data into a train and a test set and apply <code>MSMR.lite</code> to the training data</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html">setDT</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html" class="external-link">setDT</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">)</span>
 <span class="va">dat.train</span><span class="op">[</span>,<span class="va">row</span> <span class="op">:=</span> <span class="va">.I</span><span class="op">]</span>
 <span class="va">dat.train</span><span class="op">$</span><span class="va">value.var</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">uniqpats.train</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">uniqpats.train</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">##here is the application of MSMR.lite</span>
 <span class="va">dat.train</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSMSR.lite.html">MSMSR.lite</a></span><span class="op">(</span>MLHO.dat<span class="op">=</span><span class="va">dat.train</span>,
@@ -183,11 +179,11 @@
 <p>Notice that we are removing concepts that had prevalence less than 0.5% and then only taking the top 200 after the JMI rankings. See help (<code><a href="../reference/MSMSR.lite.html">?mlho::MSMSR.lite</a></code>) for <code>MSMR.lite</code> parameters.</p>
 <p>Now we have the training data with the top 200 features, to which we can add demographic features. Now on to prepping the test set:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat.test</span>,<span class="va">dat.test</span><span class="op">$</span><span class="va">phenx</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">dat.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">dat.test</span>,<span class="va">dat.test</span><span class="op">$</span><span class="va">phenx</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">dat.train</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">setDT</span><span class="op">(</span><span class="va">dat.test</span><span class="op">)</span>
 <span class="va">dat.test</span><span class="op">[</span>,<span class="va">row</span> <span class="op">:=</span> <span class="va">.I</span><span class="op">]</span>
 <span class="va">dat.test</span><span class="op">$</span><span class="va">value.var</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">uniqpats.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat.test</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">uniqpats.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dat.test</span><span class="op">$</span><span class="va">patient_num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">dat.test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSMSR.lite.html">MSMSR.lite</a></span><span class="op">(</span>MLHO.dat<span class="op">=</span><span class="va">dat.test</span>,patients <span class="op">=</span> <span class="va">uniqpats.test</span>,sparsity<span class="op">=</span><span class="cn">NA</span>,jmi <span class="op">=</span> <span class="cn">FALSE</span>,labels <span class="op">=</span> <span class="va">labeldt</span><span class="op">)</span></code></pre></div>
 <p>Here notice that we only used <code>MSMR.lite</code> to generate the wide table that matches to the <code>dat.train</code> table.</p>
@@ -241,11 +237,12 @@
 <span class="co">#&gt; Setting levels: control = N, case = Y</span>
 <span class="co">#&gt; Setting direction: controls &lt; cases</span></code></pre></div>
 <p>try <code><a href="../reference/mlearn.html">?mlho::mlearn</a></code> to learn more about <code>mlearn</code> parameters.</p>
-<p>you can select a variety of models. For binray classification tasks, chose from:ORFlog, RRF,gbm,bayesglm,regLogistic,xgbDART,regLogistic, glmnet, bayesglm, nb, svmRadialWeights,avNNet,and ordinalRF. see the list and description of all available <a href="https://rdrr.io/cran/caret/man/models.html">models</a></p>
+<p>you can select a variety of models. For binray classification tasks, chose from:ORFlog, RRF,gbm,bayesglm,regLogistic,xgbDART,regLogistic, glmnet, bayesglm, nb, svmRadialWeights,avNNet,and ordinalRF. see the list and description of all available <a href="https://rdrr.io/cran/caret/man/models.html" class="external-link">models</a></p>
 </div>
-<div id="mlearn-outputs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mlearn-outputs" class="anchor"></a><code>mlearn</code> outputs</h2>
+<div class="section level2">
+<h2 id="mlearn-outputs">
+<code>mlearn</code> outputs<a class="anchor" aria-label="anchor" href="#mlearn-outputs"></a>
+</h2>
 <p>outputs of <code>mlearn</code> include:</p>
 <ul>
 <li>model performance metrics: <code>model.test$ROC</code>
@@ -298,36 +295,36 @@
 <span class="co">#&gt; 202   0.2682787           black        gbm prediabetes</span></code></pre></div>
 <p><em>we recommend iterating the training and testing and storing the coefficients in a directory.</em></p>
 </div>
-<div id="visualizing-the-outputs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#visualizing-the-outputs" class="anchor"></a>Visualizing the outputs</h2>
+<div class="section level2">
+<h2 id="visualizing-the-outputs">Visualizing the outputs<a class="anchor" aria-label="anchor" href="#visualizing-the-outputs"></a>
+</h2>
 <p>Here we create a plot of the feature importance scores for each of the top (here we have ) predictors identified by MLHO.</p>
 <p>To do so, let’s map the concept codes to their “English” translation. <em>That’s why we kept that 4th column called <code>description</code> in <code>dbmart</code>.</em></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dbmart.concepts</span> <span class="op">&lt;-</span> <span class="va">dbmart</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">phenx</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"phenx"</span>,<span class="st">"DESCRIPTION"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">mlho.features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">model.test</span><span class="op">$</span><span class="va">features</span>,<span class="va">dbmart.concepts</span>,by.x<span class="op">=</span><span class="st">"features"</span>,by.y <span class="op">=</span> <span class="st">"phenx"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">datatable</span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mlho.features</span>,<span class="va">features</span>,<span class="va">DESCRIPTION</span>,`Feature importance`<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, filter <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">dbmart.concepts</span> <span class="op">&lt;-</span> <span class="va">dbmart</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">dbmart</span><span class="op">$</span><span class="va">phenx</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"phenx"</span>,<span class="st">"DESCRIPTION"</span><span class="op">)</span><span class="op">]</span>
+<span class="va">mlho.features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">model.test</span><span class="op">$</span><span class="va">features</span>,<span class="va">dbmart.concepts</span>,by.x<span class="op">=</span><span class="st">"features"</span>,by.y <span class="op">=</span> <span class="st">"phenx"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">datatable</span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">mlho.features</span>,<span class="va">features</span>,<span class="va">DESCRIPTION</span>,`Feature importance`<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, filter <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></code></pre></div>
 <div id="htmlwidget-b208bf01a3628b27c209" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-b208bf01a3628b27c209">{"x":{"filter":"bottom","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.153975180586265\" data-max=\"100\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],["104091002","117015009","14768001","169230002","171207006","19169002","197604","2001499","225158009","237602007","239873007","271737000","28163009","310325","310798","314231","368581000119106","429503","430193006","431855005","44054006","5880005","66348005","703423002","73761001","746030","76601001","79586000","860975","895994","999967"],["Hemoglobin / Hematocrit / Platelet count","Throat culture (procedure)","Peripheral blood smear interpretation","Ultrasound scan for fetal viability","Depression screening","Miscarriage in first trimester","Digoxin 0.125 MG Oral Tablet","Vitamin B 12 5 MG/ML Injectable Solution","Auscultation of the fetal heart","Metabolic syndrome X (disorder)","Osteoarthritis of knee","Anemia (disorder)","Skin test for tuberculosis","ferrous sulfate 325 MG Oral Tablet","Hydrochlorothiazide 25 MG Oral Tablet","Simvastatin 10 MG Oral Tablet","Neuropathy due to type 2 diabetes mellitus (disorder)","Hydrochlorothiazide 12.5 MG","Medication Reconciliation (procedure)","Chronic kidney disease stage 1 (disorder)","Diabetes","Physical examination of mother","Childbirth","Combined chemotherapy and radiation therapy (procedure)","Colonoscopy","Atenolol 50 MG / Chlorthalidone 25 MG Oral Tablet","Intramuscular injection","Tubal pregnancy","24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet","120 ACTUAT Fluticasone propionate 0.044 MG/ACTUAT Metered Dose Inhaler","amLODIPine 5 MG / Hydrochlorothiazide 12.5 MG / Olmesartan medoxomil 20 MG Oral Tablet"],[0.595138984458977,0.350089321967607,2.72317392702416,0.657316315359661,0.309877880198119,7.30311709726128,0.313617011216061,1.09867615065585,1.45297873238938,1.09828784895972,0.816877699645141,100,1.75569613988148,0.323546484549321,0.153975180586265,1.00378566545359,0.272773350408933,0.341562161640932,2.07303748444174,0.305124029106228,0.468012724875347,2.07572875056071,0.252944156930217,0.309469583814712,2.60820058687088,0.44118567388443,0.329456862208838,0.257458232311738,2.94036905627009,0.774085070599917,0.245666492316129]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>features<\/th>\n      <th>DESCRIPTION<\/th>\n      <th>Feature importance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><p>now visualizing feature importance</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">plot</span><span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mlho.features</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu">geom_segment</span><span class="op">(</span>
       <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="fl">0</span>,
-          x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,
+          x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,
           yend <span class="op">=</span> <span class="va">Overall</span>,
           xend <span class="op">=</span> <span class="va">DESCRIPTION</span><span class="op">)</span>,
       size<span class="op">=</span><span class="fl">0.5</span>,alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu">geom_point</span><span class="op">(</span>
-      <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,y<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>,
+      <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">DESCRIPTION</span>,<span class="va">Overall</span><span class="op">)</span>,y<span class="op">=</span><span class="va">Overall</span><span class="op">)</span>,
       alpha<span class="op">=</span><span class="fl">0.5</span>,size<span class="op">=</span><span class="fl">2</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
    <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
     <span class="fu">labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">"Feature importance"</span>,x<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="MLHO_Vanilla_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
-<div id="notes-for-more-complex-implementation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#notes-for-more-complex-implementation" class="anchor"></a>Notes for more complex implementation</h2>
+<div class="section level2">
+<h2 id="notes-for-more-complex-implementation">Notes for more complex implementation<a class="anchor" aria-label="anchor" href="#notes-for-more-complex-implementation"></a>
+</h2>
 <p>As we recommended above, it’s best to at least iterate the training process 5 times, in which case you’ll have 5 files containing the important features from MLHO. We do this regularly. If you do so, you can compute the mean/median values for each feature.</p>
 <p>Now if you want to get the regression coefficients and compute Odds Ratios (ORs), you can then select the top feature that were selected most frequently in MLHO iterations to run a regression model (pass <code>glm</code> to <code>mlearn</code>) and extract regression coefficients to then transform to ORs.</p>
 </div>
@@ -344,11 +341,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Hossein Estiri.</p>
+  <p></p>
+<p>Developed by Hossein Estiri.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -356,6 +355,8 @@
 
   
 
+
+  
 
   </body>
 </html>
