@@ -64,9 +64,9 @@ mlho.features <- mlho.it(dbmart,
                   iterations=5)
 ```
 
-here are your features and their ORs:
+here are your features:
 ```{r}
-datatable(dplyr::select(mlho.features), options = list(pageLength = 5), filter = 'bottom')
+datatable(dplyr::select(mlho.features,features,DESCRIPTION), options = list(pageLength = 5), filter = 'bottom')
 
 ```
 
