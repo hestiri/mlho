@@ -99,7 +99,7 @@ mlho.it <- function(dbmart,
                     aoi=mlearn.aoi)
 
 
-  dbmart.concepts <- dbmart[!duplicated(paste0(dbmart$phenx)), "phenx"]
+  dbmart.concepts <- dbmart[!duplicated(paste0(dbmart$phenx)), c("phenx","DESCRIPTION")]
   mlho.features <- data.frame(merge(model.i$features,dbmart.concepts,by.x="features",by.y = "phenx"))
   mlho.features$iteration <- i
   mlho.features$model.i.roc <- model.i$ROC$roc
