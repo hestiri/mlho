@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-<img src="man/figure/logo.png" align="right" height="138.5"/>
+<img src="man/figures/logo.png" align="right" height="138.5"/>
 
 MLHO (pronounced as melo) is a thinkin’ Machine Learning framework that
 implements iterative sequential representation mining, and feature and
