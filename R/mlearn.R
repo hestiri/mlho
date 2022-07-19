@@ -65,6 +65,12 @@ mlearn <- function(dat.train,
                                            savePredictions = T)
 
 
+      if(preProc == FALSE) {
+
+        model <- caret::train(as.formula(paste(goldstandard, "~ .")),
+                              data=dat.train
+                              , trControl=train_control
+                              , method = classifier)}
 
       if(preProc == TRUE) {preProc=c("center", "scale")
 
@@ -74,12 +80,7 @@ mlearn <- function(dat.train,
                             , method = classifier
                             ,preProc)}
 
-      if(preProc == FALSE) {
 
-        model <- caret::train(as.formula(paste(goldstandard, "~ .")),
-                              data=dat.train
-                              , trControl=train_control
-                              , method = classifier)}
 
       test_feats <- c(as.character(names(dat.test)))
       test.miss <- setdiff(names(dat.train),names(dat.test))
