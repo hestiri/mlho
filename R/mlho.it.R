@@ -110,6 +110,7 @@ mlho.it <- function(dbmart,
   },
   error = function(fr) {cat("ERROR :",conditionMessage(fr), "\n")})
     print(paste0("iteration ",i, " done!"))
+    closeAllConnections()
   }
   features <- do.call(rbind, lapply(feats, data.frame, stringsAsFactors=FALSE))
   features$X <- NULL
