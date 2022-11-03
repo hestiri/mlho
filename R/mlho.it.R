@@ -55,10 +55,10 @@ mlho.it <- function(dbmart,
   test_ind <- sample(uniqpats,
                      round((test.sample/100)*length(uniqpats)))
 
-  test_labels <- subset(labeldt,labels$patient_num %in% c(test_ind))
+  test_labels <- subset(labels,labels$patient_num %in% c(test_ind))
   # print("test set lables:")
   table(test_labels$label)
-  train_labels <- subset(labeldt,!(labels$patient_num %in% c(test_ind)))
+  train_labels <- subset(labels,!(labels$patient_num %in% c(test_ind)))
   # print("train set lables:")
   table(train_labels$label)
   # train and test sets
@@ -110,6 +110,7 @@ mlho.it <- function(dbmart,
   },
   error = function(fr) {cat("ERROR :",conditionMessage(fr), "\n")})
     print(paste0("iteration ",i, " done!"))
+    closeAllConnections()
   }
   features <- do.call(rbind, lapply(feats, data.frame, stringsAsFactors=FALSE))
   features$X <- NULL
