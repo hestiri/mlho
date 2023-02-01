@@ -44,12 +44,12 @@ metrix <- function(datval,
   ROC$J.sensitivity <- as.numeric(sensificities1[sensificities1$J == as.numeric(max(sensificities1$J)), "sensitivities"][1])###
   ROC$thresholdj <- as.numeric(sensificities1[sensificities1$J == as.numeric(max(sensificities1$J)), "threshold"][1])
   ROC$ppv.j <- ppv(datval$actual, datval$Y, cutoff = ROC$thresholdj)
-  ROC$npv.j <- InformationValue::npv(datval$actual, datval$Y, threshold = ROC$thresholdj)
+  # ROC$npv.j <- InformationValue::npv(datval$actual, datval$Y, threshold = ROC$thresholdj)
   ROC$cutoff <- op
-  ROC$ppv.cutoff <- InformationValue::precision(datval$actual, datval$Y, threshold = op)
-  ROC$npv.cutoff <- InformationValue::npv(datval$actual, datval$Y, threshold = op)
-  ROC$sensitivity.cutoff <- InformationValue::sensitivity(datval$actual, datval$Y, threshold = op)
-  ROC$specificity.cutoff <- InformationValue::specificity(datval$actual, datval$Y, threshold = op)
+  # ROC$ppv.cutoff <- InformationValue::precision(datval$actual, datval$Y, threshold = op)
+  # ROC$npv.cutoff <- InformationValue::npv(datval$actual, datval$Y, threshold = op)
+  # ROC$sensitivity.cutoff <- InformationValue::sensitivity(datval$actual, datval$Y, threshold = op)
+  # ROC$specificity.cutoff <- InformationValue::specificity(datval$actual, datval$Y, threshold = op)
 
   #### calculating ROC and PRROC using another package
   roc2 <- PRROC::roc.curve(datval[(datval[,label.col] == "Y"),"Y"],
