@@ -61,7 +61,7 @@ mlho.features <- mlho.it(dbmart,
                   mlearn.note="mlho phewas test run",
                   mlearn.aoi="prediabetes",
                   multicore=TRUE,
-                  iterations=3)
+                  iterations=7)
 ```
 
 here are your features:
