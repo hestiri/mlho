@@ -61,7 +61,7 @@ mlho.features <- mlho.it(dbmart,
                   mlearn.note="mlho phewas test run",
                   mlearn.aoi="prediabetes",
                   multicore=TRUE,
-                  iterations=5)
+                  iterations=3)
 ```
 
 here are your features:
@@ -103,7 +103,7 @@ GLM.output <- mlearn(dat.train=GLM.data,
                    classifier="GLM",
                    note="extracting_coefficients",
                    aoi="prediabetes",
-                   multicore=TRUE)
+                   multicore=FALSE)
 datatable(GLM.output, options = list(pageLength = 5), filter = 'bottom')
 
 ```

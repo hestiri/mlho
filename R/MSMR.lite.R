@@ -21,7 +21,7 @@ MSMSR.lite <- function(MLHO.dat,
                        jmi=TRUE,
                        topn=200,
                        patients,
-                       multicore=TRUE)
+                       multicore=FALSE)
 {
 
   # require("plyr");
@@ -45,9 +45,9 @@ MSMSR.lite <- function(MLHO.dat,
 
   # MLHO.dat.wide <- reshape2::dcast(MLHO.dat, patient_num ~ phenx, value.var="value.var", fun.aggregate = length)
   # MLHO.dat.wide <- as.data.frame(MLHO.dat.wide)
-  MLHO.dat.wide <- MLHO.dat %>% 
-    dplyr::group_by(patient_num,phenx) %>% 
-    dplyr::summarise(n=n(),.groups = "drop") %>% 
+  MLHO.dat.wide <- MLHO.dat %>%
+    dplyr::group_by(patient_num,phenx) %>%
+    dplyr::summarise(n=n(),.groups = "drop") %>%
     tidyr::pivot_wider(id_cols = "patient_num",names_from = "phenx",values_from = n,values_fill = 0)
   MLHO.dat.wide <- MLHO.dat.wide[, !(names(MLHO.dat.wide) %in% c("NA"))]
 
@@ -94,7 +94,7 @@ MSMSR.lite <- function(MLHO.dat,
   #binarize?
   if(binarize==TRUE){
     AVR[,2:dim(AVR)[2]] <- +(AVR[,2:dim(AVR)[2]] > 0)}
-  
+
   AVR <- as.data.frame(AVR)
 
   return(AVR)

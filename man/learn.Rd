@@ -35,9 +35,6 @@ learn(
 
 \item{multicore}{do you want to parallelize the process?}
 }
-\value{
-
-}
 \description{
 the ML part
 }

@@ -107,7 +107,7 @@ model.test <- mlearn(dat.train,
                    cv="cv",
                    nfold=5,
                    aoi="prediabetes",
-                   multicore=TRUE)
+                   multicore=FALSE)
 
 ```
 try `?mlho::mlearn` to learn more about `mlearn` parameters. 

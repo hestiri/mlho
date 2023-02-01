@@ -1,10 +1,9 @@
-#' Title
+#' the MLHO metrix function
 #'
 #' @param datval data on which validation will be computed
 #' @param model the model
 #' @param label.col the column number with labels
 #' @param note model description
-#' @param op cutoff for custom ppv/npv/sensitivity/specificity
 #' @param phenx outcome of the study or phenotype of the interest -- default is "phenotype"
 #' @param topn number of features used in the training data
 #' @param class binary or continuous prediction
@@ -16,7 +15,6 @@ metrix <- function(datval,
                    model,
                    label.col,
                    note,
-                   op,
                    phenx="phenotype",
                    topn,
                    class="binary"
@@ -45,7 +43,7 @@ metrix <- function(datval,
   ROC$thresholdj <- as.numeric(sensificities1[sensificities1$J == as.numeric(max(sensificities1$J)), "threshold"][1])
   ROC$ppv.j <- ppv(datval$actual, datval$Y, cutoff = ROC$thresholdj)
   # ROC$npv.j <- InformationValue::npv(datval$actual, datval$Y, threshold = ROC$thresholdj)
-  ROC$cutoff <- op
+  # ROC$cutoff <- op
   # ROC$ppv.cutoff <- InformationValue::precision(datval$actual, datval$Y, threshold = op)
   # ROC$npv.cutoff <- InformationValue::npv(datval$actual, datval$Y, threshold = op)
   # ROC$sensitivity.cutoff <- InformationValue::sensitivity(datval$actual, datval$Y, threshold = op)

@@ -29,9 +29,6 @@ bias(
 
 \item{calibrate}{##wanna calibrate the computed probabilities?}
 }
-\value{
-
-}
 \description{
 Bias evaluation metrics
 }

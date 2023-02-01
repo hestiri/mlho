@@ -56,9 +56,6 @@ mlho.it(
 
 \item{iterations}{number of iterations you want. recommended at least 5. needs to be numeric}
 }
-\value{
-
-}
 \description{
 iterative modeling with MLHO
 }

@@ -15,9 +15,6 @@ wideout(data, binarize = FALSE, sparsity = NA, patients)
 
 \item{patients}{}
 }
-\value{
-
-}
 \description{
 wideout
 }

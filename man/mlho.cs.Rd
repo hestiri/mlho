@@ -9,9 +9,6 @@ mlho.cs(mlho.features)
 \arguments{
 \item{mlho.features}{add your mlho.features}
 }
-\value{
-
-}
 \description{
 MLHO's confidence scores
 }

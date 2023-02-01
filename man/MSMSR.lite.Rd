@@ -12,7 +12,7 @@ MSMSR.lite(
   jmi = TRUE,
   topn = 200,
   patients,
-  multicore = TRUE
+  multicore = FALSE
 )
 }
 \arguments{
@@ -31,9 +31,6 @@ MSMSR.lite(
 \item{patients}{vector of patients}
 
 \item{multicore}{if you want to parallelize the jmi}
-}
-\value{
-
 }
 \description{
 MSMR lite

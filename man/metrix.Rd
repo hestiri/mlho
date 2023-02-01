@@ -2,14 +2,13 @@
 % Please edit documentation in R/metrix.R
 \name{metrix}
 \alias{metrix}
-\title{Title}
+\title{the MLHO metrix function}
 \usage{
 metrix(
   datval,
   model,
   label.col,
   note,
-  op,
   phenx = "phenotype",
   topn,
   class = "binary"
@@ -24,8 +23,6 @@ metrix(
 
 \item{note}{model description}
 
-\item{op}{cutoff for custom ppv/npv/sensitivity/specificity}
-
 \item{phenx}{outcome of the study or phenotype of the interest -- default is "phenotype"}
 
 \item{topn}{number of features used in the training data}
@@ -36,5 +33,5 @@ metrix(
 output includes performance model metrics
 }
 \description{
-Title
+the MLHO metrix function
 }

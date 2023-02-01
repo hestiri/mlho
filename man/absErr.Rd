@@ -13,9 +13,6 @@ absErr(datval, model, label.col)
 
 \item{label.col}{#column number with labels}
 }
-\value{
-
-}
 \description{
 patient-level prediction error
 }

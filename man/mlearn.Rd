@@ -41,9 +41,6 @@ mlearn(
 
 \item{preProc}{preprocessig on the train data or not}
 }
-\value{
-
-}
 \description{
 the MLHO ML training and testing
 }

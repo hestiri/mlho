@@ -87,7 +87,8 @@ mlearn <- function(dat.train,
       dat.test[test.miss] <- 0
 
 
-      ROC <- metrix(datval = dat.test,model=model,label.col = which( colnames(dat.test)=="label" ),note=note,op=0.5,phenx = aoi,topn = ncol(dat.train)-1)
+      ROC <- metrix(datval = dat.test,model=model,label.col = which( colnames(dat.test)=="label" ),note=note,
+                    phenx = aoi,topn = ncol(dat.train)-1)
       ROC$cv_roc <- mean(model$results$ROC)
       ROC$cv_roc_sd <- mean(model$results$ROCSD)
       ROC$classifier <- classifier

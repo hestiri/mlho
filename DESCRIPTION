@@ -10,11 +10,11 @@ Depends: R (>= 3.1.0)
 License: LGPL (>= 2.0, < 3) | Mozilla Public License
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Suggests: 
     knitr,
     rmarkdown
-Imports: tidytext, ggplot2, reshape2, plyr, lubridate,stringr,tidyverse, readr,DT, data.table,dplyr, devtools,data.table,Hmisc,scales,viridis, tidyr, mboost, caret, pROC, PRROC, ModelMetrics,reshape2, foreach, doParallel, easypackages, praznik, InformationValue
+Imports: tidytext, ggplot2, reshape2, plyr, lubridate,stringr,tidyverse, readr,DT, data.table,dplyr, devtools,data.table,Hmisc,scales,viridis, tidyr, mboost, caret, pROC, PRROC, ModelMetrics,reshape2, foreach, doParallel, easypackages, praznik
 URL: https://github.com/hestiri/mlho
 BugReports: https://github.com/hestiri/mlho/issues
