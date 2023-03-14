@@ -14,7 +14,9 @@ RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 Imports: tidytext, ggplot2, reshape2, plyr, lubridate,stringr,tidyverse, readr,DT, data.table,dplyr, devtools,data.table,Hmisc,scales,viridis, tidyr, mboost, caret, pROC, PRROC, ModelMetrics,reshape2, foreach, doParallel, easypackages, praznik
 URL: https://github.com/hestiri/mlho
 BugReports: https://github.com/hestiri/mlho/issues
+Config/testthat/edition: 3
