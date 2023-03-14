@@ -106,15 +106,22 @@ mlearn <- function(dat.train,
       coefficients$classifier <- classifier
       coefficients$aoi <- aoi
       }
-      if(classifier!="glmboost"){
-      coefficients <- data.frame(varImp(model,scale = TRUE)$importance)
-      coefficients$features <- as.character(rownames(coefficients))
-      rownames(coefficients) <- NULL
-      coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
-      coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
-      coefficients <- subset(coefficients,coefficients$Overall > 0)
-      coefficients$classifier <- classifier
-      coefficients$aoi <- aoi
+      if(!(classifier %in% c("glmboost" ,"regLogistic"))){
+        coefficients <- data.frame(varImp(model,scale = TRUE)$importance)
+        coefficients$features <- as.character(rownames(coefficients))
+        rownames(coefficients) <- NULL
+        coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
+        coefficients$features <- sub('`', '', coefficients$features, fixed = TRUE)
+        coefficients <- subset(coefficients,coefficients$Overall > 0)
+        coefficients$classifier <- classifier
+        coefficients$aoi <- aoi
+      }
+
+      if(classifier=="regLogistic"){
+        ##coefficients
+        coefficients <- data.frame(model$finalModel$W)
+        coefficients$classifier <- classifier
+        coefficients$aoi <- aoi
       }
 
 
